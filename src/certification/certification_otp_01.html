@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body class="util">
+    <div id="wrap">
+        @@include('@@webRoot/_include/_header.html')
+        <div class="container">
+            <div class="util-wrap">
+                <div class="util-header d-flex align-items-center flex-column">
+                    <strong>2단계 인증</strong>
+                </div>
+                <div class="util-body mt-5">
+                    <div class="row g-4 align-items-stretch justify-content-center">
+                        <div class="col-5 h-100">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="option-header">Opt.1 Google Autenticator (Google OTP)</div>
+                                    <div class="option-body gap-4">
+                                        <div>
+                                            <p>Google OTP 앱에서 6자리 코드를 확인해주세요.</p>
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-lg" placeholder="6-digit code">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#modal-cert-fail">확인</button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p>Google OTP 초기화가 필요한 경우 아래 옵션 중 하나를 선택해주세요.</p>
+                                            <p>초기화 후, 재로그인하여 QR코드 등록을 다시 진행해주세요.</p>
+                                        
+                                        </div>
+                                        <div>
+                                            <div class="d-grid mt-2"><a href="certification_otp_reset_code.html" class="btn btn-lg btn-outline-dark">6-digit code로 초기화</a></div>
+                                        </div>
+                                        <div>
+                                            <div class="d-grid mt-2"><a href="certification_otp_reset_key.html" class="btn btn-lg btn-outline-dark">2FA 16-digit key로 초기화</a></div>
+                                        </div>
+                                        <div>
+                                            <div class="d-grid mt-2"><a href="certification_otp_reset_email_code.html" class="btn btn-lg btn-outline-dark">이메일 인증으로 초기화</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5 h-100">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="option-header">Opt.2 이메일 인증</div>
+                                    <div class="option-body">
+                                        <div>
+                                            <p>가입한 이메일로 전송된 인증 번호를 통해 이메일 인증을 진행해주세요.</p>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <a href="certification_email.html" class="btn btn-dark btn-lg">이메일 인증</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>

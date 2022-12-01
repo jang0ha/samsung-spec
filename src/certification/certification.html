@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body class="util">
+    <div id="wrap">
+        @@include('@@webRoot/_include/_header.html')
+        <div class="container">
+            <div class="util-wrap">
+                <div class="util-header d-flex align-items-center flex-column">
+                    <strong>2단계 인증</strong>
+                </div>
+                <div class="util-body mt-5">
+                    <div class="row g-4 align-items-stretch justify-content-center">
+                        <div class="col-5 h-100">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="option-header">Opt.1 Google Autenticator (Google OTP)</div>
+                                    <div class="option-body">
+                                        <div>
+                                            <p>앱스토어(iOS)나 구글플레이(Android)에서 Google OTP 앱을 다운로드 해주세요.</p>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <a href="#" class="btn btn-outline-dark  btn-lg">앱 다운로드 하기 (Android | iOS)</a>
+                                            <a href="certification_otp.html" class="btn btn-dark btn-lg">Google OTP 앱에서 QR코드 스캔하기</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5 h-100">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="option-header">Opt.2 이메일 인증</div>
+                                    <div class="option-body">
+                                        <div>
+                                            <p>가입한 이메일로 전송된 인증 번호를 통해 이메일 인증을 진행해주세요.</p>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <a href="certification_email.html" class="btn btn-dark btn-lg">이메일 인증</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>
