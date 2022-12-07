@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../assets/lib/swiper/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
 
     <script src="../assets/lib/jquery/jquery.min.js"></script>
     <script src="../assets/lib/jquery-ui/jquery-ui.min.js"></script>
@@ -215,6 +216,327 @@
             </main> <!-- main -->
         </div>
     </div>
+    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 카테고리 순서-->
+    <div class="modal fade popup-preview" id="popupDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="staticBackdropLabel">카테고리 순서</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- @@@@ 모달 바디 안에 있는것만 갖다 붙히세요 -->
+                <div class="modal-body">
+                    <div class="table-wrap">
+                        <input type="hidden" id="mIdx" value="66">
+                        <input type="hidden" id="msCcSiteCd" value="ae">
+                        <!-- @@@@ 클래스 변경 (아래) -->
+                        <table class="table common-table table-bordered table-fixed th-center">
+                            <colgroup>
+                                <col style="width:15%">
+                                <col style="width:15%">
+                                <col>
+                                <col style="width:15%">
+                                <col>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th colspan="2">No</th>
+                                    <td class="idx">1</td>
+                                    <th>모델명</th>
+                                    <td class="mMemo">Galaxy A71 5G</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">Site Code</th>
+                                    <td class="msCcIdx" colspan="3">ae</td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">수집</th>
+                                    <th>수집일</th>
+                                    <td class="lastUpdate" colspan="3">2022.04.12 21:04</td>
+                                </tr>
+                                <tr>
+                                    <th>구분</th>
+                                    <td class="mCollType" colspan="3">자동</td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">배포</th>
+                                    <th>배포일</th>
+                                    <td class="mdCreateTime" colspan="3">2020.09.01 15:26</td>
+                                </tr>
+                                <tr>
+                                    <th>총 배포 횟수</th>
+                                    <td class="deployCount" colspan="3">2회</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">노출관리</th>
+                                    <td class="" colspan="3">
+                                        <!-- @@@@ div 감싸기 (아래)-->
+                                        <div class="hstack gap-3">
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <!-- @@@@ 공통 인풋 클래스 custom-control-input >> form-check-input으로 변경 -->
+                                                <input id="msDispYn" class="msDispYn form-check-input" type="checkbox" name="msDispYn" value="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label"> 비교 모델 노출</span>
+                                            </label>
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <input id="msDiscoverYn" class="msDiscoverYn form-check-input" type="checkbox" name="msDiscoverYn">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label"> new models 노출</span>
+                                            </label>
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <input id="directSpecCheck" class="directSpecCheck form-check-input" type="checkbox" name="inputCycle" value="" onclick="javascript:Dashboard.checkOutManage(this);">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label"> 추가 스펙 노출</span>
+                                            </label>
+                                            <label class="custom-control custom-control-primary custom-checkbox">
+                                                <input id="msColorYn" class="msColorYn form-check-input" type="checkbox" name="inputCycle" value="">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-label"> 색상 노출</span>
+                                            </label>
+                                            <!--                                     <label class="custom-control custom-control-primary custom-checkbox"> -->
+                                            <!--                                          <input id="msPriceYn" class="msPriceYn custom-control-input" type="checkbox" name="inputCycle" value=""> -->
+                                            <!--                                          <span class="custom-control-indicator"></span>  -->
+                                            <!--                                     </label> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- @@@@ 클래스 수정 text-right m-b-sm > text-end mb-3 mt-5 -->
+                    <div class="text-end mb-3 mt-5">
+                        <button class="btn btn-primary" type="button" onclick="Dashboard.checkClear();">초기화</button>
+                    </div>
+
+                    <div class="modelThumb">
+                        <div class="thumb">
+                            <img class="mImgUrlPopup" src="https://media.galaxy-cms.com/media/img/a-series/model/20200213/14765688116483795.png" alt="">
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <!-- @@@@ 클래스 추가 common-table th-center-->
+                        <table class="table table-bordered table-row common-table th-center">
+                            <colgroup>
+                                <col style="width:15%">
+                                <col>
+                                <col style="width:30%">
+                                <col style="width:30%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Category</th>
+                                    <th class="text-center">Title</th>
+                                    <th class="text-center">수집 데이터</th>
+                                    <th class="text-center">서비스 데이터</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th colspan="2">Display model name</th>
+                                    <td class="msDispName">Galaxy A71 5G</td>
+                                    <td><textarea class="form-control" id="detail_msDispNameSer"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">Color</th>
+                                    <th>Name</th>
+                                    <td class="msColorData1">Prism Cube Black / Prism Cube Silver</td>
+                                    <td><textarea class="form-control" id="detail_msColorData1Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>Code</th>
+                                    <td class="msColorData2">#000000 / #dbdbdb</td>
+                                    <td><textarea class="form-control" id="detail_msColorData2Ser"></textarea></td>
+                                </tr>
+                                <!--                             <tr> -->
+                                <!--                                 <th colspan="2">Price</th> -->
+                                <!--                                 <td class=""></td> -->
+                                <!--                             	<td><textarea class="form-control" id="detail_msPriceData1Ser"></textarea></td> -->
+                                <!--                             </tr> -->
+                                <!--  직접입력 스펙1, 2 추가됨 2019.11.25 -->
+                                <tr class="directInputTr" style="">
+                                    <!-- @@@@ text-center 클래스 삭제 -->
+                                    <th>추가 스펙1</th>
+                                    <th>
+                                        <textarea id="msDireTitle1Ser" class="msDireTitle1Ser form-control"></textarea>
+                                    </th>
+                                    <td colspan="2">
+                                        <textarea id="msDireData1Ser" class="msDireData1Ser form-control"></textarea>
+                                    </td>
+                                </tr>
+                                <tr class="directInputTr" style="">
+                                    <!-- @@@@ text-center 클래스 삭제 -->
+                                    <th>추가 스펙2</th>
+                                    <th>
+                                        <textarea id="msDireTitle2Ser" class="msDireTitle2Ser form-control"></textarea>
+                                    </th>
+                                    <td colspan="2">
+                                        <textarea id="msDireData2Ser" class="msDireData2Ser form-control"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="6">Display</th>
+                                    <th>메인 크기</th>
+                                    <td class="msDispData1">169.5mm (6.7")</td>
+                                    <td><textarea class="form-control" id="msDispData1Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>메인 해상도</th>
+                                    <td class="msDispData2">1080 x 2400 (FHD+)</td>
+                                    <td><textarea class="form-control" id="msDispData2Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>메인 종류</th>
+                                    <td class="msDispData3">Super AMOLED Plus</td>
+                                    <td><textarea class="form-control" id="msDispData3Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>커버 크기</th>
+                                    <td class="msDispData4"></td>
+                                    <td><textarea class="form-control" id="msDispData4Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>커버 해상도</th>
+                                    <td class="msDispData5"></td>
+                                    <td><textarea class="form-control" id="msDispData5Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>커버 종류</th>
+                                    <td class="msDispData6"></td>
+                                    <td><textarea class="form-control" id="msDispData6Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="6">Camera</th>
+                                    <th>후면 화소(MP)</th>
+                                    <td class="msCamData1">64.0 MP + 12.0 MP + 5.0 MP + 5.0 MP</td>
+                                    <td><textarea class="form-control" id="msCamData1Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>후면 조리개(F)</th>
+                                    <td class="msCamData2">F1.8 , F2.2 , F2.2 , F2.4</td>
+                                    <td><textarea class="form-control" id="msCamData2Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>전면 화소(MP)</th>
+                                    <td class="msCamData3">32.0 MP</td>
+                                    <td><textarea class="form-control" id="msCamData3Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>전면 조리개(F)</th>
+                                    <td class="msCamData4">F2.2</td>
+                                    <td><textarea class="form-control" id="msCamData4Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>커버 화소(MP)</th>
+                                    <td class="msCamData5"></td>
+                                    <td><textarea class="form-control" id="msCamData5Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>커버 조리개(F)</th>
+                                    <td class="msCamData6"></td>
+                                    <td><textarea class="form-control" id="msCamData6Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="4">Battery</th>
+                                    <th>배터리 용량(mAh, Typical)</th>
+                                    <td class="msBatData3">4500 mAh</td>
+                                    <td><textarea class="form-control" id="msBatData3Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>인터넷 사용 (Wi-Fi)(Hours)</th>
+                                    <td class="msBatData1">Up to 15</td>
+                                    <td><textarea class="form-control" id="msBatData1Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>오디오 재생(Hours)</th>
+                                    <td class="msBatData4"></td>
+                                    <td><textarea class="form-control" id="msBatData4Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>비디오 재생(Hours)</th>
+                                    <td class="msBatData2"></td>
+                                    <td><textarea class="form-control" id="msBatData2Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="3">메모리 &amp; 스토리지</th>
+                                    <th>메모리</th>
+                                    <td class="msMemData1">8 GB</td>
+                                    <td><textarea class="form-control" id="msMemData1Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>스토리지</th>
+                                    <td class="msMemData2">128 GB</td>
+                                    <td><textarea class="form-control" id="msMemData2Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>외장 메모리</th>
+                                    <td class="msMemData3"><span class="badge badge-info" style="margin-right:10px;">NEW</span>MicroSD (Up to 1TB)</td>
+                                    <td><textarea class="form-control" id="msMemData3Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">Processor</th>
+                                    <th>CPU 속도</th>
+                                    <td class="msProcData1">2.2 GHz, 1.8 GHz</td>
+                                    <td><textarea class="form-control" id="msProcData1Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>CPU 종류</th>
+                                    <td class="msProcData2">Octa-Core</td>
+                                    <td><textarea class="form-control" id="msProcData2Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="2">Dimensions</th>
+                                    <th>크기</th>
+                                    <td class="msPhysiData1"></td>
+                                    <td><textarea class="form-control" id="msPhysiData1Ser"></textarea></td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <th>접힌 상태시 크기</th>
+                                    <td class="msPhysiData2"></td>
+                                    <td><textarea class="form-control" id="msPhysiData2Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>무게</th>
+                                    <td class="msPhysiData3"></td>
+                                    <td><textarea class="form-control" id="msPhysiData3Ser"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <th rowspan="1">sustainability</th>
+                                    <th>소재</th>
+                                    <td class="msSusData1"></td>
+                                    <td><textarea class="form-control" id="msSusData1Ser"></textarea></td>
+                                </tr>
+                                <!--                             <tr> -->
+                                <!--                                 <th>　</th> -->
+                                <!--                                 <td class="msSusData2"></td> -->
+                                <!--                                 <td><textarea class="form-control" id="msSusData2Ser" disabled></textarea></td> -->
+                                <!--                             </tr> -->
+                                <tr class="graySensor">
+                                    <th class="graySensor" colspan="2">Sensor</th>
+                                    <td class="msSenData1">Accelerometer, Fingerprint Sensor, Gyro Sensor, Geomagnetic Sensor, Hall Sensor, RGB Light Sensor, Proximity Sensor</td>
+                                    <td><textarea id="msSenData1Ser" class="form-control"></textarea></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <!-- @@@@ 텍스트 수정 (아래) -->
+                        <p>* 입력한 정보가 정확한지 다시 한번 확인해주세요. <br>* 수정이 필요한 경우 ‘취소’ 버튼을 눌러주세요.</p>
+                    </div>
+                </div>
+                <!-- @@@@ 버튼들 위치 변경 modal-footer에 넣음 아래 전체적으로 다 바뀜 다 볼것 -->
+                <div class="modal-footer">
+                    <!-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#popupDetail">미리보기</button> -->
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#popupPreview">미리보기</button>
+                    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#alertDistribute">배포</button>
+                    <!-- @@@@ btn-outline-dark / btn-dark 클래스 변경 -->
+                    <button class="btn btn-outline-dark" type="button" data-dismiss="modal">취소</button>
+                    <button class="btn btn-dark" type="button" onclick="Dashboard.updateIgnoreUpdate()">업데이트 무시</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 시작-->
     <div class="modal modal-default fade" id="alertStart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -254,37 +576,55 @@
 
     <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 카테고리 순서-->
     <div class="modal fade popup-preview" id="popupPreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">카테고리 순서</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="preview">
-                        <div class="img"><img class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200727/29038124036438846.png" alt=""></div>
-                        <h2 class="mMemoPreview">Galaxy A01 Core</h2>
+                <div class="modal-body bg-light">
+                    <div class="preview-wrap">
+                        <div class="preview-img-wrap">
+                            <div class="img">
+                                <img class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200727/29038124036438846.png" alt="">
+                            </div>
+                            <h2 class="mMemoPreview">Galaxy A01 Core</h2>
+                        </div>
                         <div id="preview-sortable" class="ui-sortable">
-                            <div class="section ui-sortable-handle s7">
-                                <h3><span class="ciSustainability">Sustainability</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-sustainability"></i><span class="ciSustainability">Sustainability</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
-                            <div class="section ui-sortable-handle s6">
-                                <h3><span class="ciDimensions">Dimensions</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-dimensions"></i><span class="ciDimensions">Dimensions</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
-                            <div class="section ui-sortable-handle s5">
-                                <h3><span class="ciProcessor">Processor</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-processor"></i><span class="ciProcessor">Processor</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
-                            <div class="section ui-sortable-handle s4">
-                                <h3><span class="ciMemory">Memory</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-memory"></i><span class="ciMemory">Memory & Storage3</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
-                            <div class="section ui-sortable-handle s3">
-                                <h3><span class="ciBattery">Battery</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-battery"></i><span class="ciBattery">Battery</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
-                            <div class="section ui-sortable-handle s2">
-                                <h3><span class="ciCamera">Camera</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-camera"></i><span class="ciCamera">Camera</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
-                            <div class="section ui-sortable-handle s1">
-                                <h3><span class="ciDisplay">Display</span><i class="icon-drag"></i></h3>
+                            <div class="section">
+                                <h3>
+                                    <div class="hstack gap-3"><i class="icon-display"></i><span class="ciDisplay">Display</span></div><i class="icon-drag"></i>
+                                </h3>
                             </div>
                         </div>
                     </div>

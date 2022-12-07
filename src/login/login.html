@@ -2,48 +2,48 @@
 <html lang="ko">
 
 <head>
-    @@include('@@webRoot/_include/_head.html')
+  @@include('@@webRoot/_include/_head.html')
 </head>
 
 <body>
-    <div id="wrap">
-        <div class="login">
-            <div class="container vh-100 d-flex align-items-center">
-                <div class="inner">
-                    <h1 class="text-center"><img src="../assets/images/logo.svg" alt="SAMSUNG SPEC"></h1>
-                    <form id="" name="" class="">
-                        <div class="d-grid gap-2">
-                            <input type="text" placeholder="User ID" class="form-control form-control-lg">
-                            <input type="password" placeholder="Password" class="form-control form-control-lg">
-                        </div>
-                        <div class="d-grid gap-4 mt-4 pt-2">
-                            <button type="submit" class="btn btn-dark btn-lg">LOGIN</button>
-                            <a href="../user/user_terms.html" class="btn btn-outline-dark btn-lg">Sign up</a>
-                            <ul class="d-flex justify-content-between align-items-center gap-3">
-                                <li>
-                                    <a href="find_password.html " class="text-gray6 text-decoration-none fw-bold">비밀번호 찾기</a>
-                                </li>
-                                <li>
-                                    <ul class="d-flex align-items-center">
-                                        <li>
-                                            <input type="radio" class="btn-check" id="KO" name="lang" autocomplete="off">
-                                            <label class="btn btn-sm text-gray4 fw-bold" for="KO">KO</label>
-                                        </li>
-                                        <li class="vr"></li>
-                                        <li>
-                                            <input type="radio" class="btn-check" id="EN" name="lang" autocomplete="off">
-                                            <label class="btn btn-sm text-gray4 fw-bold pe-0" for="EN">EN</label>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </form>
-                </div>
+  <div id="wrap">
+    <div class="login">
+      <div class="container vh-100 d-flex align-items-center">
+        <div class="inner">
+          <h1 class="text-center"><img src="../assets/images/logo.svg" alt="SAMSUNG SPEC"></h1>
+          <input type="hidden" id="loginFlag" value="F">
+          <form id="" name="" class="">
+            <div class="d-grid gap-2">
+              <input type="text" placeholder="User ID" class="form-control form-control-lg" id="uId"  autocomplete="off" onchange="$('#loginFlag').val('F')">
+              <div onchange="$('#loginFlag').val('F')">
+                <input type="password" placeholder="Password" class="form-control form-control-lg" id="uPw">
+              </div>
             </div>
+            <div class="d-grid gap-4 mt-4 pt-2">
+              <button type="submit" class="btn btn-dark btn-lg" id="loginBtn">LOGIN</button>
+              <a href="../user/user_terms.html" class="btn btn-outline-dark btn-lg">Sign up</a>
+              <ul class="d-flex justify-content-between align-items-center gap-3">
+                <li>
+                  <a href="find_password.html " class="text-gray6 text-decoration-none fw-bold">비밀번호 찾기</a>
+                </li>
+                <li>
+                  <select name="lang" class="custom-select text-center lang-select">
+                    <option value="en_US" selected="selected">EN</option>
+                    <option value="ko_KR">KO</option>
+                    <option value="es_ES">ES</option>
+                    <option value="de_DE">DE</option>
+                    <option value="fr_FR">FR</option>
+                    <option value="cn_CN">CN</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-    @@include('@@webRoot/_include/_modal.html')
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
 </body>
 
 </html>

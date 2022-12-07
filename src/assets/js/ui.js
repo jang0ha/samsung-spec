@@ -19,14 +19,14 @@ let Common = {
     //   }
     // });
     //  우측 테이블 보이게
-     $('[data-toggle="right-card"]').on("click", function (e) {
-       $("#right-card").toggleClass("d-none");
-     });
-     //  리스트 테이블 보이게
-     $('#right-card').on("click", ".btn-close", function (e) {
-       $(".list-table").removeClass("d-none");
-       $("#right-card").addClass("d-none");
-     });
+    $('[data-toggle="right-card"]').on("click", function (e) {
+      $("#right-card").toggleClass("d-none");
+    });
+    //  리스트 테이블 보이게
+    $('#right-card').on("click", ".btn-close", function (e) {
+      $(".list-table").removeClass("d-none");
+      $("#right-card").addClass("d-none");
+    });
 
 
 
@@ -146,6 +146,20 @@ let Common = {
     });
 
 
+    //모달 중첩 z-index 조정
+    $('.modal').on('show.bs.modal', function (e) {
+      var zIndex = 1040 + (10 * $('.modal:visible').length);
+      $(this).css('z-index', zIndex);
+      setTimeout(function () {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+      }, 0);
+    }).on('hidden.bs.modal', function () {
+      if ($('.modal:visible').length > 0) {
+        setTimeout(function () {
+          $(document.body).addClass('modal-open');
+        }, 0);
+      }
+    });
 
   }
 }

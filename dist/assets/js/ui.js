@@ -141,6 +141,21 @@ var Common = {
       monthSelect: true,
       yearSelect: true
     });
+
+    //모달 중첩 z-index 조정
+    $('.modal').on('show.bs.modal', function (e) {
+      var zIndex = 1040 + 10 * $('.modal:visible').length;
+      $(this).css('z-index', zIndex);
+      setTimeout(function () {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+      }, 0);
+    }).on('hidden.bs.modal', function () {
+      if ($('.modal:visible').length > 0) {
+        setTimeout(function () {
+          $(document.body).addClass('modal-open');
+        }, 0);
+      }
+    });
   }
 };
 Common.init();

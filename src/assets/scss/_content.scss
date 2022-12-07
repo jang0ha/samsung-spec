@@ -269,6 +269,62 @@
 
 
 .chart-usage-area, .chart-channel-area{
-  height: auto;
-  min-height: 420px;
+  height: 414px;
+  padding: 32px 16px 10px 16px;
 }
+
+.preview-wrap{
+  padding-top: 30px;
+}
+
+.preview-img-wrap{
+
+  width: 170px;
+  height: 170px;
+  margin: 20px auto 0  auto;
+  .img{
+    width: 120px;
+    height: 120px;
+    margin: auto;
+  }
+  h2{
+    margin-top: 12px;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+}
+#preview-sortable{
+  padding: 20px 0;
+  .section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $gray-200;
+    border-radius: 1rem;
+    background: $white;
+    padding:24px 16px;
+    box-shadow:0 0.375rem 0.25rem rgb(0 0 0 / 2%);
+    h3{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin:0;
+    }
+    span{
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .icon-drag{
+      cursor: grab;
+    }
+    & + .section{
+      margin-top: 14px;
+    }
+  }
+}
+
+
+
+
