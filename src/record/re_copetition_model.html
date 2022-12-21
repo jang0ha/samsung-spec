@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body>
+  <div id="wrap">
+
+    @@include('@@webRoot/_include/_header.html')
+    <div id="container">
+      @@include('@@webRoot/_include/_aside.html')
+      <main id="main">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><i class="icon-home"></i></li>
+              <li class="breadcrumb-item">변경 이력</li>
+              <li class="breadcrumb-item active" aria-current="page">경쟁 모델 변경 이력</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">경쟁 모델 변경 이력</h1>
+          <div class="content-wrapper">
+            <div class="row">
+              <!-- 좌측  -->
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title">경쟁 모델 변경 현황</h2>
+                    <!-- 검색영역 -->
+                    <div class="search">
+                      <form class="form form-horizontal">
+                        <div class="form-group">
+                          <div class="row gx-2">
+                            <div class="col-2">
+                              <select id="searchType" class="form-select form-custom-select">
+                                <option value="ALL">전체</option>
+                                <option value="mhGroup">세그먼트</option>
+                                <option value="mMemo">모델명</option>
+                                <option value="mdhCcSiteCd">Site Code</option>
+                                <!-- 			                                                <option value="ccNm">국가명</option> -->
+                                <option value="mdhCreateId">배포자 아이디</option>
+                                <option value="dept">소속</option>
+                                <option value="uNm">이름</option>
+                              </select>
+                            </div>
+                            <div class="col">
+                              <input id="searchValue" class="form-control" type="text" placeholder="모델명">
+                            </div>
+                            <div class="col-auto">
+                              <button class="btn btn-secondary" type="button" onclick="Compete_history.search();">검색</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- 검색 영역 끝 -->
+                    <div class="my-2">
+                      <!-- 데이터 테이블  -->
+                      <div id="tableBox">
+                        <div data-reactroot="">
+                          <div>
+                            <div class="board_top clearfix">
+                              <div class="total_num">
+                                <!-- react-text: 5 -->총
+                                <!-- /react-text --><span>8</span><!-- react-text: 7 -->건
+                                <!-- /react-text -->
+                              </div>
+                              <div class="listing_select" style="display: none;"><span>목록개수</span><span class="select">
+                                  <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="10"><span class="filter-option pull-left">10</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+                                    <div class="dropdown-menu open" role="combobox">
+                                      <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                        <li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">10</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">25</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">50</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">100</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                      </ul>
+                                    </div><select class="selectpicker" tabindex="-98">
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                      <option>100</option>
+                                    </select>
+                                  </div>
+                                </span><span>개</span></div>
+                            </div>
+                            <div class="main_search_result_list">
+                              <table class="table table-hover custom-table">
+                                <thead>
+                                  <tr>
+                                    <th>No</th>
+                                    <th data-column="M_B_BRAND_GROUP_NM" style="cursor: pointer;">
+                                      <!-- react-text: 23 -->세그먼트
+                                      <!-- /react-text -->
+                                      <!-- react-text: 24 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="M_B_BRAND_NAME" style="cursor: pointer;">
+                                      <!-- react-text: 28 -->브랜드명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 29 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="M_MEMO" style="cursor: pointer;">
+                                      <!-- react-text: 33 -->모델명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 34 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="MDH_CC_SITE_CD" style="cursor: pointer;">
+                                      <!-- react-text: 38 -->Site
+                                      Code
+                                      <!-- /react-text -->
+                                      <!-- react-text: 39 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="COUNTRY" style="cursor: pointer;">
+                                      <!-- react-text: 43 -->국가명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 44 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="MDH_CREATE_ID" style="cursor: pointer;">
+                                      <!-- react-text: 48 -->배포자
+                                      아이디
+                                      <!-- /react-text -->
+                                      <!-- react-text: 49 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="DEPT" style="cursor: pointer;">
+                                      <!-- react-text: 53 -->소속
+                                      <!-- /react-text -->
+                                      <!-- react-text: 54 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="U_NM" style="cursor: pointer;">
+                                      <!-- react-text: 58 -->이름
+                                      <!-- /react-text -->
+                                      <!-- react-text: 59 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="MDH_DEPLOY_DT" style="cursor: pointer;">
+                                      <!-- react-text: 63 -->최근
+                                      배포일
+                                      <!-- /react-text -->
+                                      <!-- react-text: 64 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Tablet</td>
+                                    <td>Apple Models</td>
+                                    <td><a href="javascript:Compete_history.selectDeployHistoryDetail(&quot;225&quot;, &quot;al&quot;, &quot;601&quot;,  &quot;1&quot;);" data-toggle="right-card"><span data-event="half-open">iPad</span></a></td>
+                                    <td>al</td>
+                                    <td>Albania</td>
+                                    <td>KJ</td>
+                                    <td>슈퍼관리자</td>
+                                    <td>현경조</td>
+                                    <td>2022.10.20 18:40</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            @@include('@@webRoot/_include/_pagination.html')
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 데이터 테이블 끝 -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 좌측 끝 -->
+              <!-- 우측  -->
+              <div class="col-5 d-none" id="right-card">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title hstack justify-content-between">경쟁 모델 변경 정보상세<button type="button" class="btn-close btn-sm btn-right-close" aria-label="Close"></button></h2>
+                    <div class="table-wrap">
+                      <input type="hidden" id="mIdx">
+                      <input type="hidden" id="msCcSiteCd">
+                      <table class="table table-bordered common-table table-fixed">
+                        <colgroup>
+                          <col style="width:18%">
+                          <col>
+                          <col style="width:18%">
+                          <col>
+                          <col style="width:18%">
+                          <col>
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th>No</th>
+                            <td class="idx" colspan="2">1</td>
+                            <th>세그먼트</th>
+                            <td class="mhBBrandGroup" colspan="2">Tablet</td>
+                          </tr>
+                          <tr>
+                            <th>모델명</th>
+                            <td class="mMemo" colspan="2">iPad</td>
+                            <th>국가명</th>
+                            <td class="countryDetail" colspan="2">Albania</td>
+                          </tr>
+                          <tr>
+                            <th>Site Code</th>
+                            <td class="mdhCcSiteCd" colspan="5">al</td>
+                          </tr>
+                          <tr>
+                            <th>배포일시</th>
+                            <td class="mdhDeployDt" colspan="5">2022.10.20 18:40</td>
+                          </tr>
+                          <tr>
+                            <th>노출관리</th>
+                            <td colspan="5">
+                              <label class="custom-control custom-control-primary custom-checkbox">
+                                <input id="mdhDispYn" class="form-check-input" type="checkbox" name="inputCycle" value="">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-label">비교 모델 노출</span>
+                              </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>관리자 ID</th>
+                            <td class="mdhCreateId">KJ</td>
+                            <th>소속</th>
+                            <td class="dept">슈퍼관리자</td>
+                            <th>이름</th>
+                            <td class="uNm">현경조</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="modelThumb">
+                      <div class="thumb">
+                        <img id="output" class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20210702/44384613876469953.png" alt="">
+                        <input type="hidden" id="fileName">
+                        <input type="hidden" id="filePath">
+                        <input type="hidden" id="flagImg">
+                        <button data-bs-toggle="modal" data-bs-target="#popupImage" class="border border-dark rounded-2 p-2 px-3 expand-btn" style="right: 2.5rem;">
+                          <i class="icon-expand me-3"></i>확대보기
+                        </button>
+                      </div>
+                    </div>
+                    <div class="table-wrap">
+                      <table class="table table-bordered common-table table-fixed">
+                        <colgroup>
+                          <col style="width: 18%;">
+                          <col style="width:22%">
+                          <col>
+                          <col>
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th class="text-center">Category</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">이전 데이터</th>
+                            <th class="text-center">배포 데이터</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!--  직접입력 스펙1, 2 추가됨 2019.11.25 -->
+                          <tr class="directInputTr" style="display:none;">
+                            <th class="text-center">추가 스펙1</th>
+                            <th>
+                              <textarea class="mdhDireTitle1 form-control"></textarea>
+                            </th>
+                            <td colspan="2">
+                              <textarea class="mdhDireData1 form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr class="directInputTr" style="display:none;">
+                            <th class="text-center">추가 스펙2</th>
+                            <th>
+                              <textarea class="mdhDireTitle2 form-control"></textarea>
+                            </th>
+                            <td colspan="2">
+                              <textarea class="mdhDireData2 form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">Display model name</th>
+                            <td class="mdhDispNameBefore">aaa</td>
+                            <td id="mdhDispName">aaa</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="3">Display</th>
+                            <th>메인 크기</th>
+                            <td class="mdhDispData1Before">aaa</td>
+                            <td id="mdhDispData1">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>메인 해상도</th>
+                            <td class="mdhDispData2Before">aaa</td>
+                            <td id="mdhDispData2">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>메인 종류</th>
+                            <td class="mdhDispData3Before">aaa</td>
+                            <td id="mdhDispData3">aaa</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="4">Camera</th>
+                            <th>후면 화소(MP)</th>
+                            <td class="mdhCamData1Before">aaa</td>
+                            <td id="mdhCamData1">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>후면 조리개(F)</th>
+                            <td class="mdhCamData2Before">aaa</td>
+                            <td id="mdhCamData2">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>전면 화소(MP)</th>
+                            <td class="mdhCamData3Before">aaa</td>
+                            <td id="mdhCamData3">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>전면 조리개(F)</th>
+                            <td class="mdhCamData4Before">aaa</td>
+                            <td id="mdhCamData4">aaa</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="4">Battery</th>
+                            <th>배터리 용량 (mAh, Typical)</th>
+                            <td class="mdhBatData3Before">6000</td>
+                            <td id="mdhBatData3">6000</td>
+                          </tr>
+                          <tr>
+                            <th>인터넷 사용 (Wi-Fi)(Hours)</th>
+                            <td class="mdhBatData1Before">aaa</td>
+                            <td id="mdhBatData1">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>오디오 재생(Hours)</th>
+                            <td class="mdhBatData4Before">aaa</td>
+                            <td id="mdhBatData4">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>비디오 재생(Hours)</th>
+                            <td class="mdhBatData2Before">aaa</td>
+                            <td id="mdhBatData2">aaa</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="3">메모리 &amp; 스토리지</th>
+                            <th>메모리</th>
+                            <td class="mdhMemData1Before">5 GB</td>
+                            <td id="mdhMemData1">5 GB</td>
+                          </tr>
+                          <tr>
+                            <th>스토리지</th>
+                            <td class="mdhMemData2Before">128 GB</td>
+                            <td id="mdhMemData2">128 GB</td>
+                          </tr>
+                          <tr>
+                            <th>외장 메모리</th>
+                            <td class="mdhMemData3Before">aaa</td>
+                            <td id="mdhMemData3">aaa</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">Processor</th>
+                            <th>CPU 속도</th>
+                            <td class="mdhProcData1Before">aaa</td>
+                            <td id="mdhProcData1">aaa</td>
+                          </tr>
+                          <tr>
+                            <th>CPU 종류</th>
+                            <td class="mdhProcData2Before">Octa-Core</td>
+                            <td id="mdhProcData2">Octa-Core</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">Dimensions</th>
+                            <th>크기</th>
+                            <td class="mdhPhysiData1Before">1</td>
+                            <td id="mdhPhysiData1"></td>
+                          </tr>
+                          <!--                                                 <tr> -->
+
+                          <!--                                                     <td class="mdhPhysiData2Before"></td> -->
+                          <!--                                                     <td id="mdhPhysiData2"></td> -->
+                          <!--                                                 </tr> -->
+                          <tr>
+                            <th>무게</th>
+                            <td class="mdhPhysiData3Before"></td>
+                            <td id="mdhPhysiData3"></td>
+                          </tr>
+                          <tr>
+                            <th rowspan="1">sustainability</th>
+                            <th>소재</th>
+                            <td class="mdhSusData1Before"></td>
+                            <td id="mdhSusData1"></td>
+                          </tr>
+                          <!--                                                 <tr> -->
+                          <!--                                                     <th>　</th> -->
+                          <!--                                                     <td class="mdhSusData2Before"></td> -->
+                          <!--                                                     <td id="mdhSusData2"></td> -->
+                          <!--                                                 </tr> -->
+                          <tr>
+                            <th colspan="2">Sensor</th>
+                            <td class="mdhSenData1Before"></td>
+                            <td id="mdhSenData1"></td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> <!-- card-body -->
+                </div>
+              </div>
+              <!-- 우측 끝 -->
+            </div>
+          </div>
+        </div> <!-- container-fluid -->
+      </main> <!-- main -->
+    </div>
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>

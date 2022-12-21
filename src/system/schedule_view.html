@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body>
+  <div id="wrap">
+
+    @@include('@@webRoot/_include/_header.html')
+    <div id="container">
+      @@include('@@webRoot/_include/_aside.html')
+      <main id="main">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><i class="icon-home"></i></li>
+              <li class="breadcrumb-item">SYSTEM SETTINGS </li>
+              <li class="breadcrumb-item active" aria-current="page">스케줄/코드 관리</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">스케줄/코드 관리</h1>
+          <div class="content-wrapper immobilize">
+            <div class="row">
+              <div class="col-8">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title">자동 수집 스케줄 등록 현황</h2>
+                    <div class="table-wrap">
+                      <!-- @@@@ 테이블 클래스 변경 아래로 변경할것 -->
+                      <table class="table common-table border table-fixed">
+                        <colgroup>
+                          <col style="width:15%">
+                          <col>
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th>수집 주기</th>
+                            <td>
+                              <!-- @@@@ 구조 변경  -->
+                              <!-- @@@@ [공통] 인풋 체크/라디오 클래스 변경  custom-control-input >> form-check-input  이외 form-check-inline 추가 -->
+                              <label class="custom-control custom-control-primary custom-radio form-check-inline">
+                                <input class="form-check-input" type="radio" name="inputCycle" value="H">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-label">시간</span>
+                              </label>
+                              <label class="custom-control custom-control-primary custom-radio form-check-inline">
+                                <input class="form-check-input" type="radio" name="inputCycle" value="D">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-label">일</span>
+                              </label>
+                              <!-- @@@@ 구조 변경 끝 -->
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>주기 상세</th>
+                            <td>
+                              <!-- @@@@ form-select 클래스 추가   -->
+                              <select id="hour" class="form-select w-auto">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                              </select>
+                              <!-- @@@@ form-select 클래스 추가  -->
+                              <select id="day" class="form-select w-auto" style="display:none">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                              </select>
+                              <span id="cycleDetail">시간 마다</span><!-- 수집 주기 radio "일" 선택 시에는 "일 마다" 표시로 변경 -->
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>등록일</th>
+                            <td id="sUpdateTime">2019.08.22 17:45</td>
+                          </tr>
+                          <tr>
+                            <th>최근 수집</th>
+                            <td id="splCreateTime">2022.12.13 12:01</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="hstack gap-2 justify-content-center">
+                      <!-- @@@@ 버튼들 클래스 변경 확인할것 -->
+                      <button type="button" onclick="Schedule.scheduleUpdate();" class="btn btn-dark" id="btnSave">저장</button>
+                      <button type="button" onclick="Schedule.updateScheduleCycle('N');" class="btn btn-danger" id="btnStop" style="">중지</button>
+                      <button type="button" onclick="Schedule.updateScheduleCycle('Y');" class="btn btn-danger" id="btnStart" style="display:none">시작</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- container-fluid -->
+      </main> <!-- main -->
+    </div>
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>

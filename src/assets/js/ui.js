@@ -21,9 +21,12 @@ let Common = {
     //  우측 테이블 보이게
     $('[data-toggle="right-card"]').on("click", function (e) {
       $("#right-card").toggleClass("d-none");
+      if (!$("#right-card").hasClass("d-none")) {
+        $(".list-table").addClass("d-none");
+      }
     });
     //  리스트 테이블 보이게
-    $('#right-card').on("click", ".btn-close", function (e) {
+    $('#right-card').on("click", ".btn-right-close", function (e) {
       $(".list-table").removeClass("d-none");
       $("#right-card").addClass("d-none");
     });
@@ -63,7 +66,7 @@ let Common = {
           }
           // placeholder: ph,
         });
-        $(".form-select.custom[placeholder='" + ph + "']").next().find('ul.form-control').prepend(`<li class="placeholder-wrap">` + ph + `</li>`);
+        $(".form-select.form-custom-select[placeholder='" + ph + "']").next().find('ul.form-control').prepend(`<li class="placeholder-wrap">` + ph + `</li>`);
       });
     }
 
@@ -144,23 +147,6 @@ let Common = {
       monthSelect: true,
       yearSelect: true
     });
-
-
-    //모달 중첩 z-index 조정
-    $('.modal').on('show.bs.modal', function (e) {
-      var zIndex = 1040 + (10 * $('.modal:visible').length);
-      $(this).css('z-index', zIndex);
-      setTimeout(function () {
-        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-      }, 0);
-    }).on('hidden.bs.modal', function () {
-      if ($('.modal:visible').length > 0) {
-        setTimeout(function () {
-          $(document.body).addClass('modal-open');
-        }, 0);
-      }
-    });
-
   }
 }
 

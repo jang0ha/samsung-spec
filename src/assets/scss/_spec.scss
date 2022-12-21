@@ -1,15 +1,28 @@
 
+// 상세보기 >> 미리보기 관련 
 .modelThumb{border: 1px solid #ddd;}
-.modelThumb .thumb{text-align: center;position: relative;padding: 20px 0;min-height:200px}
+.modelThumb .thumb{text-align: center;position: relative;padding: 50px 0;min-height:200px}
 .modelThumb .thumb img{width:200px;}
 .modelThumb .thumb .icon{font-size: 30px;color: #111;position: absolute;bottom:30px;right:35%;}
 .modelThumb .file-upload-btn{position: absolute;right:15px;bottom:45px}
-.modelThumb p{position: absolute;bottom:5px;right:15px;margin: 0;width: 196px;text-align: center;}
+.modelThumb p{position: absolute;bottom:14px;right:15px;margin: 0;text-align: center; color:$secondary; font-size: 12px;}
+
+.modelThumb{
+  .expand-btn{
+    position: absolute;
+    bottom:45px;
+    right: 235px;
+  }
+}
+
+#mMemoTitle{text-align: center;font-weight: 700; margin-top: 1rem; font-size: 20px;} /* 모델명 제목 (수집 현황>이미지확대 시, 모델명 제목) */
+.imgZoom{text-align:center}
+.imgZoom img{max-width:100%;}
 
 
 // 데이터 테이블
 // #tableBox
-.total_num{margin-top: 0.5rem; font-weight: 700;}
+.total_num{margin-top: 0.9rem; font-weight: 700; float: left;}
 .total_num:before{content: '[';}
 .total_num span{color: $primary; font-weight: 700;}
 .total_num:after{content: ']';}
@@ -19,7 +32,21 @@
   .table{
     th, td{text-align: center;}
     td{
-      a{font-weight: bold; color: $primary; display: block;}
+      a{font-weight: bold; color: $primary; display: block; cursor: pointer;}
     }
   }
+}
+
+.table-wrap{
+  margin-bottom: 40px;
+}
+
+// [공통] 데이터 없을때
+.result_empty{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  flex-direction: column;
+  gap: 10px;
 }

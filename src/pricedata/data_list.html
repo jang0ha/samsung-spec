@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body>
+  <div id="wrap">
+
+    @@include('@@webRoot/_include/_header.html')
+    <div id="container">
+      @@include('@@webRoot/_include/_aside.html')
+      <main id="main">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><i class="icon-home"></i></li>
+              <li class="breadcrumb-item">MOBILE SPEC DATA</li>
+              <li class="breadcrumb-item active" aria-current="page">모델 수집 현황</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">모델 수집 현황</h1>
+          <div class="content-wrapper immobilize">
+            <div class="row">
+              <!-- 좌측 -->
+              <div class="col list-table">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title">모델 수집 현황</h2>
+                    <!-- 검색영역 -->
+                    <div class="search">
+                      <form class="form form-horizontal">
+                        <div class="form-group">
+                          <div class="row gx-2">
+                            <div class="col">
+                              <select id="mBBrandGroupType" class="form-select form-custom-select">
+                                <option value="">세그먼트</option>
+                              </select>
+                            </div>
+                            <div class="col">
+                              <select id="form-control-1" class="form-select form-custom-select">
+                                <option value="">모델명</option>
+                              </select>
+                            </div>
+                            <div class="col">
+                              <select id="form-control-2" class="form-select form-custom-select">
+                                <option value="">Site Code</option>
+                              </select>
+                            </div>
+                            <div class="col-auto">
+                              <button type="button" onclick="javascript:Collection.search();" class="btn btn-secondary full-width">검색</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- 검색 영역 끝 -->
+                    <div class="my-2">
+                      <!-- @@@@  [공통] 테이블 상단 우측에 버튼 들어갈때  -->
+                      <div class="hstack gap-2 float-end mb-2">
+                        <select id="msDispYnType" class="form-select custom w-auto form-select-sm" onchange="Collection.changeMsDspYn(this);">
+                          <option value="">노출값</option>
+                          <option value="Y">노출</option>
+                          <option value="N">비노출</option>
+                        </select>
+                      </div>
+                      <!-- @@@@  [공통] 테이블 상단 우측에 버튼 들어갈때 끝 -->
+                      <div id="tableBox">
+                        <div data-reactroot="">
+                          <div>
+                            <div class="board_top clearfix">
+                              <div class="total_num">
+                                <!-- react-text: 5 -->총
+                                <!-- /react-text --><span>5240</span><!-- react-text: 7 -->건
+                                <!-- /react-text -->
+                              </div>
+                              <div class="listing_select" style="display: none;"><span>목록개수</span><span class="select">
+                                  <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="10"><span class="filter-option pull-left">10</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+                                    <div class="dropdown-menu open" role="combobox">
+                                      <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                        <li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">10</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">25</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">50</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">100</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                      </ul>
+                                    </div><select class="selectpicker" tabindex="-98">
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                      <option>100</option>
+                                    </select>
+                                  </div>
+                                </span><span>개</span></div>
+                            </div>
+                            <div class="main_search_result_list">
+                              <table class="table custom-table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>No</th>
+                                    <th data-column="M_B_BRAND_GROUP" style="cursor: pointer;">
+                                      <!-- react-text: 23 -->세그먼트
+                                      <!-- /react-text -->
+                                      <!-- react-text: 24 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="M_MEMO" style="cursor: pointer;">
+                                      <!-- react-text: 28 -->모델명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 29 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="COUNTRY" style="cursor: pointer;">
+                                      <!-- react-text: 33 -->국가명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 34 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="MN_CC_SITE_CD" style="cursor: pointer;">
+                                      <!-- react-text: 38 -->Site
+                                      Code
+                                      <!-- /react-text -->
+                                      <!-- react-text: 39 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="LAST_UPDATE" style="cursor: pointer;">
+                                      <!-- react-text: 43 -->최근
+                                      수집일
+                                      <!-- /react-text -->
+                                      <!-- react-text: 44 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="DEPLOY_UPDATE" style="cursor: pointer;">
+                                      <!-- react-text: 48 -->최근
+                                      배포일
+                                      <!-- /react-text -->
+                                      <!-- react-text: 49 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="NEW_FLAG" style="cursor: pointer;">
+                                      <!-- react-text: 53 -->업데이트
+                                      <!-- /react-text -->
+                                      <!-- react-text: 54 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th>상세
+                                      보기</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Mid-range</td>
+                                    <td><a href="javascript:Collection.selectModelDetail(&quot;SM-A013&quot;, &quot;ae&quot;, &quot;1&quot;);" data-toggle="right-card"><span data-event="half-open">Galaxy A01 Core</span></a></td>
+                                    <td>
+                                      <div class="dropdown">
+                                        <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Bahrain외 5개국
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li>
+                                            <div class="dropdown-item">Action</div>
+                                          </li>
+                                          <li>
+                                            <div class="dropdown-item">Another action</div>
+                                          </li>
+                                          <li>
+                                            <div class="dropdown-item">Something else here</div>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </td>
+                                    <td>ae</td>
+                                    <td>2020.11.18 10:28</td>
+                                    <td>2022.12.13 11:52</td>
+                                    <td><span></span></td>
+                                    <td>
+                                      <a onclick="javascript:Collection.selectModelDetail();" data-bs-toggle="modal" data-bs-target="#popupDetail2">
+                                        <i class="icon-detail"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>1</td>
+                                    <td>Mid-range</td>
+                                    <td><a href="javascript:Collection.selectModelDetail(&quot;SM-A013&quot;, &quot;ae&quot;, &quot;1&quot;);" data-toggle="right-card"><span data-event="half-open">Galaxy A01 Core</span></a></td>
+                                    <td>
+                                      Bahrain
+                                    </td>
+                                    <td>ae</td>
+                                    <td>2020.11.18 10:28</td>
+                                    <td>2022.12.13 11:52</td>
+                                    <td><span class="badge badge-info">NEW</span></td>
+                                    <td>
+                                      <a onclick="javascript:Collection.selectModelDetail();" data-bs-toggle="modal" data-bs-target="#popupDetail2">
+                                        <i class="icon-detail"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            @@include('@@webRoot/_include/_pagination.html')
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 좌측 끝 -->
+
+              <!-- 우측 -->
+              <div class="col-8 d-none" id="right-card">
+                <div class="card h-100">
+                  <div class="card-body" data-toggle="match-height" id="heightReload">
+                    <h2 class="header-title hstack justify-content-between">수집모델 정보 상세<button type="button" class="btn-close btn-sm btn-right-close" aria-label="Close"></button></h2>
+                    <div class="hstack justify-content-end mb-2 mt-4">
+                      <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#popupDetail"><i class="icon-more-circle-white me-2"></i>확대보기</a>
+                    </div>
+                    <div class="table-wrap">
+                      <input type="hidden" id="mIdx" value="129">
+                      <input type="hidden" id="msCcSiteCd" value="ae">
+                      <table class="table common-table table-bordered table-fixed">
+                        <colgroup>
+                          <col style="width:15%">
+                          <col style="width:15%">
+                          <col>
+                          <col style="width:20%">
+                          <col>
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th colspan="2">No</th>
+                            <td class="idx">1</td>
+                            <th>세그먼트</th>
+                            <td class="mBBrandGroup">Mid-range</td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">모델명</th>
+                            <td class="mMemo">Galaxy A01 Core</td>
+                            <th>Site Code</th>
+                            <td class="msCcIdx">ae</td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">수집</th>
+                            <th>수집일</th>
+                            <td class="lastUpdate" colspan="3">2020.11.18 10:28</td>
+                          </tr>
+                          <tr>
+                            <th>구분</th>
+                            <td class="mCollType" colspan="3"></td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">배포</th>
+                            <th>배포일</th>
+                            <td class="mdCreateTime" colspan="3">2022.12.13 16:45</td>
+                          </tr>
+                          <tr>
+                            <th>총 배포 횟수</th>
+                            <td class="deployCount" colspan="3">9회</td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">노출관리</th>
+                            <td colspan="3">
+                              <!-- @@@@ 클래스 수정 -->
+                              <div class="hstack gap-3">
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                  <input id="msDispYn" class="msDispYn form-check-input" type="checkbox" name="msDispYn" value="">
+                                  <span class="custom-control-indicator"></span>
+                                  <span class="custom-control-label"> 비교 모델 노출</span>
+                                </label>
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                  <input id="msDiscoverYn" class="msDiscoverYn form-check-input" type="checkbox" name="msDiscoverYn">
+                                  <span class="custom-control-indicator"></span>
+                                  <span class="custom-control-label"> new models 노출</span>
+                                </label>
+                                <br>
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                  <input id="directSpecCheck" class="directSpecCheck form-check-input" type="checkbox" name="inputCycle" value="" onclick="javascript:Collection.checkOutManage(this);">
+                                  <span class="custom-control-indicator"></span>
+                                  <span class="custom-control-label"> 추가 스펙 노출</span>
+                                </label>
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                  <input id="msColorYn" class="msColorYn form-check-input" type="checkbox" name="inputCycle" value="">
+                                  <span class="custom-control-indicator"></span>
+                                  <span class="custom-control-label"> 색상 노출</span>
+                                </label>
+                                <!--                                                         <label class="custom-control custom-control-primary custom-checkbox"> -->
+                                <!--                                                              <input id="msPriceYn" class="msPriceYn form-check-input" type="checkbox" name="inputCycle" value=""> -->
+                                <!--                                                              <span class="custom-control-indicator"></span>  -->
+                                <!--                                                         </label> -->
+                              </div>
+                              <!-- @@@@ 클래스 수정 끝-->
+                            </td>
+                          </tr>
+                          <tr>
+                            <th colspan="2">무시 관리</th>
+                            <td colspan="3">
+                              <!-- @@@@ 클래스 수정 -->
+                              <label class="custom-control custom-control-primary custom-checkbox">
+                                <input id="msDUpdateYn" class="msDUpdateYn form-check-input" type="checkbox" name="msDUpdateYn" value="">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-label"> 업데이트 무시</span>
+                              </label>
+                              <!-- @@@@ 클래스 수정 끝-->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- @@@@  태그 / 클래스 수정 -->
+                    <div class="modelThumb">
+                      <div class="thumb">
+                        <img id="output" class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200727/29038124036438846.png" alt="">
+                        <input type="hidden" id="fileName">
+                        <input type="hidden" id="filePath">
+                        <input type="hidden" id="flagImg">
+                        <div class="img-enroll-wrap">
+                          <button data-bs-toggle="modal" data-bs-target="#popupImage" class="border border-dark rounded-2 p-2 expand-btn">
+                            <i class="icon-expand"></i>
+                          </button>
+                          <label class="file-upload-btn btn btn-dark">
+                            이미지 등록 (500px X 500px)
+                            <input class="file-upload-input visually-hidden" type="file" id="imgFile" accept=".jpg, .gif, .png, .jpeg" onchange="javascript:Collection.loadFile(event, this);">
+                          </label>
+                          <p class="w-auto">※ 이미지 상하단을 제품으로 가득 채운 이미지</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="hstack justify-content-end gap-2 mt-5 mb-2">
+                      <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#popupPreview">미리보기</button>
+                      <button class="btn btn-danger" type="button" onclick="Collection.checkClear();">초기화</button>
+                    </div>
+                    <!-- @@@@  태그 / 클래스 수정 끝-->
+                    <div class="table-wrap">
+                      <!-- @@@@ 클래스 수정 -->
+                      <table class="table common-table table-bordered table-fixed">
+                        <colgroup>
+                          <col style="width: 15%;">
+                          <col style="width:20%">
+                          <col style="width: 35%;">
+                          <col>
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th class="text-center">Category</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">수집 데이터</th>
+                            <th class="text-center">서비스 데이터</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th colspan="2">Display model name</th>
+                            <td class="msDispName">Galaxy A01 Core</td>
+                            <td>
+                              <textarea id="msDispNameSer" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">Color</th>
+                            <th>Name</th>
+                            <td class="msColorData1"></td>
+                            <td>
+                              <textarea id="msColorData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Code</th>
+                            <td class="msColorData2"></td>
+                            <td>
+                              <textarea id="msColorData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <!-- 				                            	 <tr> -->
+                          <!--                                                     <th colspan="2">Price</th> -->
+                          <!--                                                     <td class="msPriceData1"></td> -->
+                          <!-- 				                                	<td> -->
+                          <!-- 				                                		<textarea id="msPriceData1Ser" class="form-control" ></textarea> -->
+                          <!-- 				                                	</td> -->
+                          <!--                                                 </tr> -->
+                          <!--  직접입력 스펙1, 2 추가됨 2019.11.25 -->
+                          <tr class="directInputTr" style="display:none;">
+                            <th class="text-center">추가 스펙1</th>
+                            <th>
+                              <textarea id="msDireTitle1Ser" class="msDireTitle1Ser form-control"></textarea>
+                            </th>
+                            <td colspan="2">
+                              <textarea id="msDireData1Ser" class="msDireData1Ser form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr class="directInputTr" style="display:none;">
+                            <th class="text-center">추가 스펙2</th>
+                            <th>
+                              <textarea id="msDireTitle2Ser" class="msDireTitle2Ser form-control"></textarea>
+                            </th>
+                            <td colspan="2">
+                              <textarea id="msDireData2Ser" class="msDireData2Ser form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="6">Display</th>
+                            <th>메인 크기</th>
+                            <td class="msDispData1">134.8mm (5.3")</td>
+                            <td>
+                              <textarea id="msDispData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>메인 해상도</th>
+                            <td class="msDispData2">1480 x 720 (HD+)</td>
+                            <td>
+                              <textarea id="msDispData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>메인 종류</th>
+                            <td class="msDispData3">PLS TFT LCD</td>
+                            <td>
+                              <textarea id="msDispData3Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>커버 크기</th>
+                            <td class="msDispData4"></td>
+                            <td>
+                              <textarea id="msDispData4Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>커버 해상도</th>
+                            <td class="msDispData5"></td>
+                            <td>
+                              <textarea id="msDispData5Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>커버 종류</th>
+                            <td class="msDispData6"></td>
+                            <td>
+                              <textarea id="msDispData6Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="6">Camera</th>
+                            <th>후면 화소(MP)</th>
+                            <td class="msCamData1">8.0 MP</td>
+                            <td>
+                              <textarea id="msCamData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>후면 조리개(F)</th>
+                            <td class="msCamData2">F2.2</td>
+                            <td>
+                              <textarea id="msCamData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>전면 화소(MP)</th>
+                            <td class="msCamData3">5.0 MP</td>
+                            <td>
+                              <textarea id="msCamData3Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>전면 조리개(F)</th>
+                            <td class="msCamData4">F2.4</td>
+                            <td>
+                              <textarea id="msCamData4Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>커버 화소(MP)</th>
+                            <td class="msCamData5"></td>
+                            <td>
+                              <textarea id="msCamData5Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>커버 조리개(F)</th>
+                            <td class="msCamData6"></td>
+                            <td>
+                              <textarea id="msCamData6Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="4">Battery</th>
+                            <th>배터리 용량(mAh, Typical)</th>
+                            <td class="msBatData3">3000 mAh</td>
+                            <td>
+                              <textarea id="msBatData3Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>인터넷 사용 (Wi-Fi)(Hours)</th>
+                            <td class="msBatData1">Up to 14</td>
+                            <td>
+                              <textarea id="msBatData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>오디오 재생(Hours)</th>
+                            <td class="msBatData4">Up to 70</td>
+                            <td>
+                              <textarea id="msBatData4Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>비디오 재생(Hours)</th>
+                            <td class="msBatData2">Up to 11</td>
+                            <td>
+                              <textarea id="msBatData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="3">메모리 &amp; 스토리지</th>
+                            <th>메모리</th>
+                            <td class="msMemData1">1 GB</td>
+                            <td>
+                              <textarea id="msMemData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>스토리지</th>
+                            <td class="msMemData2">16 GB</td>
+                            <td>
+                              <textarea id="msMemData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>외장 메모리</th>
+                            <td class="msMemData3">MicroSD (Up to 512 GB)</td>
+                            <td>
+                              <textarea id="msMemData3Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">Processor</th>
+                            <th>CPU 속도</th>
+                            <td class="msProcData1">1.5 GHz</td>
+                            <td>
+                              <textarea id="msProcData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>CPU 종류</th>
+                            <td class="msProcData2">Quad-Core</td>
+                            <td>
+                              <textarea id="msProcData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="2">Dimensions</th>
+                            <th>크기</th>
+                            <td class="msPhysiData1"></td>
+                            <td>
+                              <textarea id="msPhysiData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr style="display: none;">
+                            <th>접힌 상태시 크기</th>
+                            <td class="msPhysiData2"></td>
+                            <td>
+                              <textarea id="msPhysiData2Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>무게</th>
+                            <td class="msPhysiData3"></td>
+                            <td>
+                              <textarea id="msPhysiData3Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th rowspan="1">sustainability</th>
+                            <th>소재</th>
+                            <td class="msSusData1"></td>
+                            <td>
+                              <textarea id="msSusData1Ser" class="form-control"></textarea>
+                            </td>
+                          </tr>
+                          <!--                                                 <tr> -->
+                          <!--                                                     <th>　</th> -->
+                          <!--                                                     <td class="msSusData2"></td> -->
+                          <!-- 				                                	<td> -->
+                          <!-- 				                                		<textarea id="msSusData2Ser" class="form-control" disabled></textarea> -->
+                          <!-- 				                                	</td> -->
+                          <!--                                                 </tr> -->
+                          <tr class="graySensor">
+                            <th class="graySensor" colspan="2">Sensor</th>
+                            <td class="msSenData1">Accelerometer, Virtual Proximity Sensing</td>
+                            <td><textarea id="msSenData1Ser" class="form-control"></textarea></td>
+                          </tr>
+                          <!-- <tr>
+                            <th colspan="2">이미지</th>
+                            <td>ama505.jpg</td>
+                            <td>
+                              <label class="file-upload-btn btn btn-dark">
+                                이미지 변경
+                                <input class="file-upload-input visually-hidden" type="file" name="files[]" multiple="multiple">
+                              </label>
+                              &nbsp;&nbsp;3:5 비율
+                            </td>
+                          </tr> -->
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="hstack gap-2 justify-content-center">
+                      <button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#popupPreview">미리보기</button>
+                      <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#alertDistribute">배포</button>
+                      <button class="btn btn-secondary btn-right-close" type="button">취소</button>
+                      <button class="btn btn-dark" type="button" onclick="Collection.updateIgnoreUpdate()">업데이트 무시</button>
+                      <!-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#popupDetail">미리보기</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 우측 끝 -->
+            </div>
+          </div>
+        </div> <!-- container-fluid -->
+      </main> <!-- main -->
+    </div>
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>

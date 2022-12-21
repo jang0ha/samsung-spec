@@ -116,7 +116,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="icon-home"></i></li>
-                        <li class="breadcrumb-item">PRICE DATA SETTINGS</li>
+                        <li class="breadcrumb-item">MOBILE SPEC DATA</li>
                         <li class="breadcrumb-item active" aria-current="page">가격 데이터 등록/관리</li>
                     </ol>
                 </nav>
@@ -150,6 +150,9 @@
         </section>
         <section>
             <h1>버튼</h1>
+            <button data-bs-toggle="modal" data-bs-target="#popupImage" class="border border-dark rounded-2 p-2 px-3 expand-btn">
+                <i class="icon-expand me-3"></i>확대보기
+            </button>
             <div class="mb-2">
                 <button class="btn btn-xs btn-dark">button xs</button>
                 <button class="btn btn-xs btn-dark" disabled>button xs</button>
@@ -181,6 +184,18 @@
                 <input type="text" class="form-control form-control-lg d-inline w-auto" value="" placeholder="">
                 <input type="text" class="form-control form-control-lg d-inline w-auto" value="asdsad">
                 <input type="text" class="form-control form-control-lg d-inline w-auto" value="asdsad" disabled>
+
+                <p>@@@@ [공통] 인풋 체크/라디오 클래스 변경 custom-control-input >> form-check-input</p>
+                <label class="custom-control custom-control-primary custom-radio">
+                    <input class="form-check-input" type="radio" name="inputCycle" value="H">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-label">시간</span>
+                </label>
+                <label class="custom-control custom-control-primary custom-radio">
+                    <input class="form-check-input" type="checkbox" name="inputCycle" value="H">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-label">시간</span>
+                </label>
             </div>
         </section>
         <section>
@@ -227,6 +242,7 @@
             <h1>Select</h1>
             <div class="mt-3">
                 <p>Custom</p>
+                <p>custom-select >> form-select로 클래스 변경</p>
                 <div class="mb-2">
                     <select class="form-select custom form-select-sm d-inline w-auto" aria-label="Default select">
                         <option selected>custom-select-sm</option>
@@ -279,7 +295,33 @@
                     </select>
                 </div>
             </div>
-
+            <div class="mt-5">
+                <p>form-custom-select</p>
+                <div class="mb-2">
+                    <select class="form-custom-select form-select form-select-sm d-inline w-auto" aria-label="Default select">
+                        <option selected>form-select-sm</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <select class="form-custom-select form-select d-inline w-auto" aria-label="Default select">
+                        <option selected>form-select-md</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <select class="form-custom-select form-select form-select-lg d-inline w-auto" aria-label="Default select">
+                        <option selected>form-select-lg</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
             <section>
                 <h1>Table</h1>
                 <div class="table-container">

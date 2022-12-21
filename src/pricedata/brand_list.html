@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body>
+  <div id="wrap">
+
+    @@include('@@webRoot/_include/_header.html')
+    <div id="container">
+      @@include('@@webRoot/_include/_aside.html')
+      <main id="main">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><i class="icon-home"></i></li>
+              <li class="breadcrumb-item">MOBILE SPEC DATA</li>
+              <li class="breadcrumb-item active" aria-current="page">경쟁 브랜드 등록 / 관리</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">경쟁 브랜드 관리</h1>
+          <div class="content-wrapper">
+            <div class="row">
+              <!-- 좌측 -->
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title">경쟁 브랜드 등록 현황</h2>
+                    <div class="my-2">
+                      <!-- @@@@  [공통] 테이블 상단 우측에 버튼 들어갈때  -->
+                      <div class="hstack gap-2 float-end mb-2">
+                        <button id="newExbrand" type="button" class="btn btn-primary btn-xs rounded-pill" onclick="Exbrand.newReg()" data-toggle="right-card">신규등록</button>
+                      </div>
+                      <!-- @@@@  [공통] 테이블 상단 우측에 버튼 들어갈때 끝 -->
+                      <!-- 데이터 테이블  -->
+                      <div id="tableBox">
+                        <div data-reactroot="">
+                          <div>
+                            <div class="board_top clearfix">
+                              <div class="total_num">
+                                <!-- react-text: 5 -->총
+                                <!-- /react-text --><span>3</span><!-- react-text: 7 -->건
+                                <!-- /react-text -->
+                              </div>
+                              <div class="listing_select" style="display: none;"><span>목록개수</span><span class="select">
+                                  <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-dark" data-toggle="dropdown" role="button" title="10"><span class="filter-option pull-left">10</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+                                    <div class="dropdown-menu open" role="combobox">
+                                      <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                        <li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">10</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">25</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">50</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">100</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                      </ul>
+                                    </div><select class="selectpicker" tabindex="-98">
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                      <option>100</option>
+                                    </select>
+                                  </div>
+                                </span><span>개</span></div>
+                            </div>
+                            <div class="main_search_result_list">
+                              <table class="table custom-table table-fixed">
+                                <thead>
+                                  <tr>
+                                    <th style="width: 60px;">No</th>
+                                    <th data-column="B_BRAND_NAME">
+                                      <!-- react-text: 23 -->브랜드명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 24 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="BF_BRAND_GROUP">
+                                      <!-- react-text: 28 -->세그먼트명
+                                      <!-- /react-text -->
+                                      <!-- react-text: 29 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th>이미지</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1</td>
+                                    <td><a href="javascipt:;" data-toggle="right-card"><span onclick="Exbrand.getModelData(3,1);">LG Models</span></a></td>
+                                    <td>FLAGSHIP</td>
+                                    <td><img src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" class="table-img-thumb"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- 변경되어야할 페이지네이션  -->
+                            @@include('@@webRoot/_include/_pagination.html')
+                            <!-- 변경되어야할 페이지네이션 끝 -->
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 데이터 테이블 끝 -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 좌측 끝   -->
+              <!-- 우측 [상세] -->
+              <div class="col-5 d-none" id="right-card">
+                <div class="card h-100">
+                  <div class="card-body card-data__content">
+                    <h2 class="header-title hstack justify-content-between">브랜드 정보 상세<button type="button" class="btn-close btn-right-close btn-sm" aria-label="Close"></button></h2>
+                    <form>
+                      <div class="table-wrap">
+                        <input type="hidden" id="mIdx"><!-- 모델IDX -->
+                        <table class="table table-bordered common-table table-fixed">
+                          <colgroup>
+                            <col style="width:20%">
+                            <col>
+                            <col style="width:20%">
+                            <col>
+                          </colgroup>
+                          <tbody id="modeldetailTbody">
+                            <tr class="modelEdit modelNew">
+                              <th>No</th>
+                              <td id="dataListIdx">1</td>
+                              <th>등록자</th>
+                              <td id="mCreateId">ailey.lee</td>
+                            </tr>
+                            <!-- 브랜드명 등록 -->
+                            <tr class="modelEdit modelNew">
+                              <th>브랜드명<span class="required">*</span></th>
+                              <td colspan="3">
+                                <div class="hstack gap-2">
+                                  <input id="bBrandName" class="form-control" type="text" onchange="Exbrand.brandNmDupliFlag = 'F';" disabled="disabled">
+                                  <button id="duplicationBtn" type="button" class="btn btn-dark col-auto" onclick="Exbrand.chkDuplication()" disabled="disabled">중복확인</button>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- Flagship 신규이미지 등록 -->
+                            <tr class="modelNew" id="flagshipNew" style="">
+                              <th>Flagship<br> 이미지 등록</th>
+                              <td colspan="3">
+                                <div class="vstack gap-2">
+                                  <div class="hstack gap-2">
+                                    <input type="text" id="flagshipFileName" class="form-control" readonly="readonly">
+                                    <input type="hidden" id="flagshipFilePath" value="/model/20200215/14946512594896004.png">
+                                    <input type="hidden" id="flagshipFlagImg">
+                                    <label class="file-upload-btn col-auto btn btn-dark">
+                                      첨부파일 추가
+                                      <input class="file-upload-input visually-hidden" type="file" id="fImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 'f');" disabled="disabled">
+                                    </label>
+                                  </div>
+                                  <div class="output-img-thumb" style="">
+                                    <!-- 아래 이미지 있을때 -->
+                                    <img src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" alt="" id="output">
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- 이미지 수정 -->
+                            <tr class="modelEdit" id="flagshipEdit" style="">
+                              <th>Flagship<br> 이미지</th>
+                              <td colspan="3">
+                                <div class="modelThumb">
+                                  <div class="thumb">
+                                    <img id="outputFlagship" class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" alt="">
+                                    <input type="hidden" id="flagshipFileName">
+                                    <input type="hidden" id="flagshipFilePath">
+                                    <input type="hidden" id="flagshipFlagImg">
+                                    <label id="imgBtn" class="file-upload-btn col-auto btn btn-dark imgBtn" style="">
+                                      이미지 등록 (500px X 500px)
+                                      <input class="file-upload-input visually-hidden" type="file" id="fUImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 'f');">
+                                    </label>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- High-end 신규이미지 등록 -->
+                            <tr class="modelNew" id="highNew">
+                              <th>High-end<br> 이미지 등록</th>
+                              <td colspan="3">
+                                <div class="vstack gap-2">
+                                  <div class="hstack gap-2">
+                                    <input type="text" id="highendFileName" class="form-control" readonly="readonly">
+                                    <input type="hidden" id="highendFilePath">
+                                    <input type="hidden" id="highendFlagImg">
+                                    <label class="file-upload-btn col-auto btn btn-dark">
+                                      첨부파일 추가
+                                      <input class="file-upload-input visually-hidden" type="file" id="hImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 'h');" disabled="disabled">
+                                    </label>
+                                  </div>
+                                  <div class="output-img-thumb" style="">
+                                    <!-- 아래 이미지 있을때 -->
+                                    <img src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" alt="" id="output">
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- 이미지 수정 -->
+                            <tr class="modelEdit" id="highEdit" style="">
+                              <th>High-end <br>이미지</th>
+                              <td colspan="3">
+                                <div class="modelThumb">
+                                  <div class="thumb">
+                                    <img id="outputHigh" class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" alt="">
+                                    <input type="hidden" id="highendFileName">
+                                    <input type="hidden" id="highendFilePath">
+                                    <input type="hidden" id="highendFlagImg">
+                                    <label id="imgBtn" class="file-upload-btn col-auto btn btn-dark imgBtn" style="">
+                                      이미지 등록 (500px X 500px)
+                                      <input class="file-upload-input visually-hidden" type="file" id="hUImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 'h');">
+                                    </label>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- Mid-range 신규이미지 등록 -->
+                            <tr class="modelNew" id="midNew">
+                              <th>Mid-range<br> 이미지 등록</th>
+                              <td colspan="3">
+                                <div class="vstack gap-2">
+                                  <div class="hstack gap-2">
+                                    <input type="text" id="midrangeFileName" class="form-control" readonly="readonly">
+                                    <input type="hidden" id="midrangeFilePath">
+                                    <input type="hidden" id="midrangeFlagImg">
+                                    <label class="file-upload-btn col-auto btn btn-dark">
+                                      첨부파일 추가
+                                      <input class="file-upload-input visually-hidden" type="file" id="mImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 'm');" disabled="disabled">
+                                    </label>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- 이미지 수정 -->
+                            <tr class="modelEdit" id="midEdit" style="">
+                              <th>Mid-range<br> 이미지</th>
+                              <td colspan="3">
+                                <div class="modelThumb">
+                                  <div class="thumb">
+                                    <img id="outputMid" class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" alt="">
+                                    <input type="hidden" id="midrangeFileName">
+                                    <input type="hidden" id="midrangeFilePath">
+                                    <input type="hidden" id="midrangeFlagImg">
+                                    <label id="imgBtn" class="file-upload-btn btn btn-dark imgBtn" style="">
+                                      이미지 등록 (500px X 500px)
+                                      <input class="file-upload-input visually-hidden" type="file" id="mUImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 'm');">
+                                    </label>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- Tablet 신규이미지 등록 -->
+                            <tr class="modelNew" id="tabletNew">
+                              <th>Tablet<br> 이미지 등록</th>
+                              <td colspan="3">
+                                <div class="vstack gap-2">
+                                  <div class="hstack gap-2">
+                                    <input type="text" id="tabletFileName" class="form-control" readonly="readonly">
+                                    <input type="hidden" id="tabletFilePath">
+                                    <input type="hidden" id="tabletFlagImg">
+                                    <label class="file-upload-btn col-auto btn btn-dark">
+                                      첨부파일 추가
+                                      <input class="file-upload-input visually-hidden" type="file" id="tImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 't');" disabled="disabled">
+                                    </label>
+                                  </div>
+                                  <div class="output-img-thumb" style="">
+                                    <!-- 아래 이미지 있을때 -->
+                                    <img src="https://media.galaxy-cms.com/media/img/a-series/model/20200215/14946512594896004.png" alt="" id="output">
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- 이미지 수정 -->
+                            <tr class="modelEdit" id="tabletEdit" style="display: none;">
+                              <th>Tablet<br> 이미지</th>
+                              <td colspan="3">
+                                <div class="modelThumb">
+                                  <div class="thumb">
+                                    <img id="outputTablet" class="mImgUrl" src="" alt="">
+                                    <input type="hidden" id="tabletFileName">
+                                    <input type="hidden" id="tabletFilePath">
+                                    <input type="hidden" id="tabletFlagImg">
+                                    <label id="imgBtn" class="file-upload-btn btn btn-dark imgBtn" style="display: none">
+                                      이미지 등록 (500px X 500px)
+                                      <input class="file-upload-input visually-hidden" type="file" id="tUImgFile" accept=".jpg, .gif, .png, .jpeg" onchange="Exbrand.loadFile(event, this, 't');">
+                                    </label>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr class="modelEdit">
+                              <th>
+                                등록일시
+                                <input type="hidden" id="bIdx" value="3">
+                              </th>
+                              <td colspan="3" class="bCreateTime">2020.02.15 15:39</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!--  저장 , 취소 -->
+                      <div id="newBtnGrp" class="hstack gap-2 justify-content-center btnGrp modelNew" style="">
+                        <button class="btn btn-dark" type="button" id="btnSave" onclick="Exbrand.insert(1)">저장</button>
+                        <button class="btn btn-secondary" type="button" onclick="$(this).closest('form')[0].reset()">취소</button>
+                      </div>
+                      <!-- 삭제 , 수정 -->
+                      <div id="editBtnGrp" class="hstack gap-2 justify-content-center btnGrp modelEdit">
+                        <button class="btn btn-dark" type="button" id="saveBtn" onclick="Exbrand.insert(2)" style="">저장</button>
+                        <button class="btn btn-dark" type="button" id="editBtn" onclick="Exbrand.onEdit()">수정</button>
+                        <button class="btn btn-secondary" type="button" id="delBtn" data-toggle="modal" data-target="#alertDelete">삭제</button>
+                      </div>
+                    </form>
+                  </div> <!-- card-body -->
+                </div>
+              </div>
+              <!-- 우측 [상세] 끝 -->
+            </div>
+          </div>
+        </div> <!-- container-fluid -->
+      </main> <!-- main -->
+    </div>
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>

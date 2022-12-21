@@ -66,7 +66,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="../mypage/mypage.html">마이페이지</a></li>
-                                <li><a class="dropdown-item" href="#modal-reset-password" data-bs-toggle="modal">비밀번호 변경</a></li>
+                                <li><a class="dropdown-item" href="javascirpt:;" data-bs-target="#modal-reset-password" data-bs-toggle="modal">비밀번호 변경</a></li>
                             </ul>
                         </li>
                         <li class="nav-item ms-3">
@@ -91,7 +91,7 @@
                             <ul class="second-level">
                                 <li class=""><a href="../system/subsidary_view.html">모델 등록 / 관리</a></li>
                                 <li><a href="../system/country_view.html">국가 코드 등록 / 관리</a></li>
-                                <li><a href="../system/channel_view.html">자동수집 스케줄 관리 <span>on</span> </a></li>
+                                <li><a href="../system/schedule_view.html">자동수집 스케줄 관리 <span class="ms-2 badge badge-info">OFF</span> <span class="ms-2 badge badge-success">ON</span></a></li>
                             </ul>
                         </li>
                         <li class="has-treeview hide">
@@ -102,10 +102,10 @@
                                 <i class="icon-select-top"></i>
                             </a>
                             <ul class="second-level">
-                                <li class="active"><a href="../pricedata/price_data_list.html">수집 데이터 관리 / 배포</a></li>
-                                <li><a href="../pricedata/price_data_waiting.html">직접 등록</a></li>
-                                <li><a href="../pricedata/price_data_approval.html">경쟁 브랜드 등록 / 관리</a></li>
-                                <li><a href="../pricedata/price_data_approval.html">경쟁 모델 관리</a></li>
+                                <li class="active"><a href="../pricedata/data_list.html">수집 데이터 관리 / 배포</a></li>
+                                <li><a href="../pricedata/data_writing.html">직접 등록</a></li>
+                                <li><a href="../pricedata/brand_list.html">경쟁 브랜드 등록 / 관리</a></li>
+                                <li><a href="../pricedata/competition_model.html">경쟁 모델 관리</a></li>
                             </ul>
                         </li>
                         <li class="has-treeview hide">
@@ -116,9 +116,10 @@
                                 <i class="icon-select-top"></i>
                             </a>
                             <ul class="second-level">
-                                <li class=""><a href="../record/price.html">모델 변경 이력</a></li>
-                                <li class=""><a href="../record/record.html">수집 데이터 변경 이력</a></li>
-                                <li><a href="../record/api.html">경쟁 모델 변경 이력</a></li>
+                                <li class=""><a href="../record/model_list.html">모델 변경 이력</a></li>
+                                <li class=""><a href="../record/collect_data_record.html">수집 데이터 변경 이력</a></li>
+                                <li><a href="../record/re_copetition_model.html">경쟁 모델 변경 이력</a></li>
+                                <li><a href="../record/user_record.html">유저 이력 관리</a></li>
                             </ul>
                         </li>
                         <li class="has-treeview hide">
@@ -129,8 +130,8 @@
                                 <i class="icon-select-top"></i>
                             </a>
                             <ul class="second-level">
-                                <li class=""><a href="../user_management/user_management_list.html">유저 목록</a></li>
-                                <li><a href="../user_management/user_management_approval.html">유저 승인 대기 목록</a></li>
+                                <li class=""><a href="../user_management/user_management_list.html">사용자 목록</a></li>
+                                <li><a href="../user_management/user_management_approval.html">사용자 승인 대기 목록</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -282,7 +283,480 @@
             </main> <!-- main -->
         </div>
     </div>
-    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 카테고리 순서-->
+    <!-- [공통] 얼럿 모달 -->
+    <div id="alertCustom" tabindex="-1" role="dialog" class="modal in" data-name="uDept">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alertCustom_msg">부서명을 입력해주세요</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-dark" data-bs-dismiss="modal" type="button">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- [공통] 컨펌 모달 -->
+    <div id="confirmCustom" tabindex="-1" role="dialog" class="modal in" data-name="uDept">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">알림</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="alertCustom_msg">부서명을 입력해주세요</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-dark" type="button">확인</button>
+                    <button class="btn btn-outline-dark" data-bs-dismiss="modal" type="button">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 모달 : USER > 유저 목록 > sitecode검색-->
+    <div class="modal fade" id="siteCodeSearch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">국가(SITE) 코드 검색</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="border height-300px overflow-auto p-3">
+                        <ul class="form-check-list">
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault`+i+`">
+                                <label class="form-check-label" for="flexCheckDefault`+i+`">
+                                    All
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault1">
+                                <label class="form-check-label" for="flexCheckDefault1">
+                                    country 1
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault2">
+                                <label class="form-check-label" for="flexCheckDefault2">
+                                    country 2
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault3">
+                                <label class="form-check-label" for="flexCheckDefault3">
+                                    country 3
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault4">
+                                <label class="form-check-label" for="flexCheckDefault4">
+                                    country 4
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault5">
+                                <label class="form-check-label" for="flexCheckDefault5">
+                                    country 5
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault6">
+                                <label class="form-check-label" for="flexCheckDefault6">
+                                    country 6
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault7">
+                                <label class="form-check-label" for="flexCheckDefault7">
+                                    country 7
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault8">
+                                <label class="form-check-label" for="flexCheckDefault8">
+                                    country 8
+                                </label>
+                            </li>
+                            <li class="form-check  mb-2">
+                                <input class="form-check-input" type="checkbox" name="flexCheckDefault" id="flexCheckDefault9">
+                                <label class="form-check-label" for="flexCheckDefault9">
+                                    country 9
+                                </label>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 : MOBILE SPEC DATA > 수집 데이터 관리 / 배포 > 상세보기 > 미리보기 -->
+    <div class="modal fade" id="popupPreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">미리보기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-light">
+                    <div class="preview-container py-4 mt-1">
+                        <!-- 상단 텍스트  -->
+                        <div class="pb-4 border-bottom">
+                            <p class="text-gray6 fs-6 mb-3">* 미리보기의 언어는 실제 매장 내 기기의 언어설정에 따라 카테고리 항목은 변동될 수 있습니다.</p>
+                            <p class="text-gray6 fs-6">* 미리보기 화면의 경우, Home 화면의 단일 스펙 보기 화면 기준으로 미리보기에서 확인 가능하고, 비교하기 버튼은 보이지 않습니다</p>
+                        </div>
+                        <!-- 상단 텍스트 끝 -->
+
+                        <!-- 이미지 정보 -->
+                        <div class="vstack gap-3 align-items-center img-thumbnail-wrap text-center py-5">
+                            <img class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200727/29038124036438846.png" alt="">
+                            <h4 class="mMemoPreview fw-bold m-0">Galaxy A01 Core</h4>
+                        </div>
+                        <!-- 이미지 정보 끝  -->
+
+                        <!-- 카테고리 리스트  -->
+                        <ul class="category-preivew-wrap">
+                            <li>
+                                <!-- @@@@ 우측정렬일경우 .justify-content-end 클래스 추가 / 기본일경우 안붙음  -->
+                                <p class="justify-content-end">Display1</p>
+                                <div class="list-container">
+                                    <i class="icon-display"></i>
+                                    <p class="list-title">Main Screen</p>
+                                    <p class="list-desc">158.4mm (6.2")<br>2400 x 1080 (FHD+)</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Camera</p>
+                                <div class="list-container">
+                                    <i class="icon-camera"></i>
+                                    <p class="list-title">Rear Camera</p>
+                                    <p class="list-desc">64.0 MP + 12.0 MP + 5.0 MP + 5.0 MP<br>
+                                        F1.8 , F2.2 , F2.2 , F2.4</p>
+                                    <p class="list-title">Front Camera</p>
+                                    <p class="list-desc">32.0 MPF2.2</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Battery ***</p>
+                                <div class="list-container">
+                                    <i class="icon-battery"></i>
+                                    <p class="list-desc">Internet-wifi (hrs) : <br>
+                                        Up to 15<br>
+                                        Audio (hrs) : Up to 68<br>
+                                        Video (hrs) : Up to 20</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Memory & Storage3</p>
+                                <div class="list-container">
+                                    <i class="icon-memory"></i>
+                                    <p class="list-title">Memory</p>
+                                    <p class="list-desc">8 GB (LPDDR5)</p>
+                                    <p class="list-title">Storage</p>
+                                    <p class="list-desc">12 MP + 64 MP <br>+12 MP<br>F1.8, F2.0, F2.2</p>
+                                    <p class="list-title">External Memory<br>Support</p>
+                                    <p class="list-desc">MicroSD (Up to 1TB) </p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Processor</p>
+                                <div class="list-container">
+                                    <i class="icon-processor"></i>
+                                    <p class="list-title">CPU Speed</p>
+                                    <p class="list-desc">2.9 GHz, 2.8 GHz,<br>2.2 GHz</p>
+                                    <p class="list-title">CPU Type</p>
+                                    <p class="list-desc">Octa-Core</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>Sustainability</p>
+                                <div class="list-container">
+                                    <i class="icon-sustainability"></i>
+                                    <p class="list-title">Main Screen</p>
+                                    <p class="list-desc">158.4mm (6.2")<br>2400 x 1080 (FHD+)</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- 카테고리 리스트 끝 -->
+
+                        <!-- 하단 텍스트  -->
+                        <div class="pt-4 pb-2">
+                            <p class="text-gray4 fs-6 mt-3">Product and color availability may vary by country, market or carrier.</p>
+                            <p class="text-gray4 fs-6 mt-3">Specification and features may vary by country, market or carrier.</p>
+                            <p class="text-gray4 fs-6 mt-3">Screen measured diagonally as a full rectangle without accounting for the rounded corners. Actual viewable area is less due to the rounded corners and the camera cutout.</p>
+                            <p class="text-gray4 fs-6 mt-3">Typical value tested under third-party lab condition. Rated(minimum) capacity is less. For more information, please visit www.samsung.com. Battery time is based on our own laboratory measurements, and may vary depending on factors such as device settings, usage patterns and operating conditions.</p>
+                        </div>
+                        <!-- 하단 텍스트 끝 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 모달 : MOBILE SPEC DATA > 수집 데이터 관리 / 배포 > 상세보기 > 이미지확대 -->
+    <div class="modal modal-default fade" id="popupImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="imgZoom"><img id="outputPopup" class="mImgUrlPopup" src="https://media.galaxy-cms.com/media/img/a-series/model/20200727/29038124036438846.png" alt=""></div>
+                    <div id="mMemoTitle" class="mMemo">Galaxy A01 Core</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-dark" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 모달 : SYSTEM SETTINGS > 국가 코드 등록 / 관리 > 국가(SITE) 코드 등록 -->
+    <div class="modal modal-default fade" id="popupCode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">국가(SITE) 코드 등록</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- @@@@  table 클래스 아래로 맞출것  -->
+                    <table class="table table-bordered common-table text-center">
+                        <colgroup>
+                            <col style="width:22%">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>국가명</th>
+                                <td>
+                                    <!-- @@@@ custom-select >> form-select 클래스 변경 -->
+                                    <select id="ccNm" class="form-select" onchange="$(this).closest('tbody').find('input').val(''); $('#ccCd').focus();">
+                                        <option value="">국가명</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Anguila">Anguila</option>
+                                        <option value="AntiguaBarbads">AntiguaBarbads</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Aruba">Aruba</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Azerbajian">Azerbajian</option>
+                                        <option value="Bahamas">Bahamas</option>
+                                        <option value="Bahrain">Bahrain</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Barbados">Barbados</option>
+                                        <option value="Belgium">Belgium</option>
+                                        <option value="Belize">Belize</option>
+                                        <option value="Bermuda">Bermuda</option>
+                                        <option value="Bolivia">Bolivia</option>
+                                        <option value="BosniaandHerzegovina">BosniaandHerzegovina</option>
+                                        <option value="Brazil">Brazil</option>
+                                        <option value="Brit.VirginIsland">Brit.VirginIsland</option>
+                                        <option value="Bulgaria">Bulgaria</option>
+                                        <option value="Cambodia">Cambodia</option>
+                                        <option value="Cameroon">Cameroon</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="CaymanIslands">CaymanIslands</option>
+                                        <option value="Chile">Chile</option>
+                                        <option value="China">China</option>
+                                        <option value="Colombia">Colombia</option>
+                                        <option value="CostaRica">CostaRica</option>
+                                        <option value="Croatia">Croatia</option>
+                                        <option value="CUBA">CUBA</option>
+                                        <option value="Curacao">Curacao</option>
+                                        <option value="Cypress">Cypress</option>
+                                        <option value="CzechRepublic">CzechRepublic</option>
+                                        <option value="Denmark">Denmark</option>
+                                        <option value="Dominica">Dominica</option>
+                                        <option value="DominicaRepublic">DominicaRepublic</option>
+                                        <option value="DRCongo">DRCongo</option>
+                                        <option value="EastTimor">EastTimor</option>
+                                        <option value="Ecuador">Ecuador</option>
+                                        <option value="Egypt">Egypt</option>
+                                        <option value="ElSalvador">ElSalvador</option>
+                                        <option value="Estonia">Estonia</option>
+                                        <option value="Ethiopia">Ethiopia</option>
+                                        <option value="Fiji">Fiji</option>
+                                        <option value="Finland">Finland</option>
+                                        <option value="France">France</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Ghana">Ghana</option>
+                                        <option value="Greece">Greece</option>
+                                        <option value="Grenada">Grenada</option>
+                                        <option value="Guadeloupe">Guadeloupe</option>
+                                        <option value="Guatemala">Guatemala</option>
+                                        <option value="Guyana">Guyana</option>
+                                        <option value="Haiti">Haiti</option>
+                                        <option value="Honduras">Honduras</option>
+                                        <option value="HongKong">HongKong</option>
+                                        <option value="Hungary">Hungary</option>
+                                        <option value="India">India</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                        <option value="Iran">Iran</option>
+                                        <option value="Iraq">Iraq</option>
+                                        <option value="Ireland">Ireland</option>
+                                        <option value="Israel">Israel</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Jamaica">Jamaica</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="JapanStudio">JapanStudio</option>
+                                        <option value="Jordan">Jordan</option>
+                                        <option value="Kazakhstan">Kazakhstan</option>
+                                        <option value="Kenya">Kenya</option>
+                                        <option value="Korea">Korea</option>
+                                        <option value="Kosovo">Kosovo</option>
+                                        <option value="Kuwait">Kuwait</option>
+                                        <option value="Laos">Laos</option>
+                                        <option value="Latvia">Latvia</option>
+                                        <option value="Lebanon">Lebanon</option>
+                                        <option value="Lithuania">Lithuania</option>
+                                        <option value="Luxembourg">Luxembourg</option>
+                                        <option value="Macedonia">Macedonia</option>
+                                        <option value="Madagascar">Madagascar</option>
+                                        <option value="Malawi">Malawi</option>
+                                        <option value="Malaysia">Malaysia</option>
+                                        <option value="Mauritius">Mauritius</option>
+                                        <option value="Mexico">Mexico</option>
+                                        <option value="Mongolia">Mongolia</option>
+                                        <option value="Montenegro">Montenegro</option>
+                                        <option value="Montserrat">Montserrat</option>
+                                        <option value="Morocco">Morocco</option>
+                                        <option value="Mozambique">Mozambique</option>
+                                        <option value="Myanmar">Myanmar</option>
+                                        <option value="Netherlands">Netherlands</option>
+                                        <option value="NetherlandsAntilles">NetherlandsAntilles</option>
+                                        <option value="Newzealand">Newzealand</option>
+                                        <option value="Nicaragua">Nicaragua</option>
+                                        <option value="Nigeria">Nigeria</option>
+                                        <option value="Norway">Norway</option>
+                                        <option value="Oman">Oman</option>
+                                        <option value="others">others</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Palestine">Palestine</option>
+                                        <option value="Panama">Panama</option>
+                                        <option value="PapuaNewGuinea">PapuaNewGuinea</option>
+                                        <option value="Paraguay">Paraguay</option>
+                                        <option value="Peru">Peru</option>
+                                        <option value="Philippines">Philippines</option>
+                                        <option value="Poland">Poland</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="PuetroRico">PuetroRico</option>
+                                        <option value="Qatar">Qatar</option>
+                                        <option value="Reunion">Reunion</option>
+                                        <option value="Romania">Romania</option>
+                                        <option value="Russia">Russia</option>
+                                        <option value="SaintLucia">SaintLucia</option>
+                                        <option value="Samoa">Samoa</option>
+                                        <option value="SaudiArabia">SaudiArabia</option>
+                                        <option value="Senegal">Senegal</option>
+                                        <option value="Serbia">Serbia</option>
+                                        <option value="Singapore">Singapore</option>
+                                        <option value="Slovakia">Slovakia</option>
+                                        <option value="Slovenia">Slovenia</option>
+                                        <option value="SouthAfrica">SouthAfrica</option>
+                                        <option value="Spain">Spain</option>
+                                        <option value="SriLanka">SriLanka</option>
+                                        <option value="Sudan">Sudan</option>
+                                        <option value="Suriname">Suriname</option>
+                                        <option value="Sweden">Sweden</option>
+                                        <option value="Switzerland">Switzerland</option>
+                                        <option value="Syria">Syria</option>
+                                        <option value="Tahiti">Tahiti</option>
+                                        <option value="Taiwan">Taiwan</option>
+                                        <option value="Tanzania">Tanzania</option>
+                                        <option value="Thailand">Thailand</option>
+                                        <option value="TrinidadTobago">TrinidadTobago</option>
+                                        <option value="Tunisia">Tunisia</option>
+                                        <option value="Turkey">Turkey</option>
+                                        <option value="TurkshCaicosin">TurkshCaicosin</option>
+                                        <option value="Uganda">Uganda</option>
+                                        <option value="Ukraine">Ukraine</option>
+                                        <option value="UnitedArabEmirates">UnitedArabEmirates</option>
+                                        <option value="UnitedKingdom">UnitedKingdom</option>
+                                        <option value="UnitedStatesofAmerica">UnitedStatesofAmerica</option>
+                                        <option value="Uruguay">Uruguay</option>
+                                        <option value="Usas">Usas</option>
+                                        <option value="Venezuela">Venezuela</option>
+                                        <option value="Vietnam">Vietnam</option>
+                                        <option value="Yemen">Yemen</option>
+                                        <option value="Zambia">Zambia</option>
+                                        <option value="Zimbabwe">Zimbabwe</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Site Code</th>
+                                <td>
+                                    <input class="form-control" type="text" id="ccSiteCd" onchange="Country.countryCodeDupliFlag = 'F';">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Spec App Code</th>
+
+
+                                <td>
+                                    <!-- @@@@ 전체 변경 버튼 클래스 확인할것!!!!  주석(기존) >> 아래(신규) -->
+                                    <!-- <div class="row gutter-xs">
+                  <div class="col-xs-9">
+                    <input class="form-control" type="text" id="ccCd" onchange="Country.countryCodeDupliFlag = 'F';">
+                  </div>
+                  <div class="col-xs-3">
+
+                    <button type="button" class="btn btn-default full-width" id="cDuplicationBtn" onclick="Country.chkDuplication('C')" style="display: inline-block;">중복확인</button>
+                    <button type="button" class="btn btn-default full-width" id="uDuplicationBtn" onclick="Country.chkDuplication('U')" style="display: none;">중복확인</button>
+
+                  </div>
+                </div> -->
+
+                                    <div class="hstack gap-2">
+                                        <input class="form-control" type="text" id="ccCd" onchange="Country.countryCodeDupliFlag = 'F';">
+                                        <button type="button" class="btn btn-dark col-auto" id="cDuplicationBtn" onclick="Country.chkDuplication('C')" style="display: inline-block;">중복확인</button>
+                                        <button type="button" class="btn btn-dark col-auto" id="uDuplicationBtn" onclick="Country.chkDuplication('U')" style="display: none;">중복확인</button>
+                                    </div>
+
+                                    <!-- @@@@ 전체 변경 끝 -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>메모</th>
+                                <td>
+                                    <input class="form-control" type="text" id="ccMemo">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-dark" onclick="Dashboard.updateModelDeploy()">배포</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 -->
     <div class="modal fade popup-preview" id="popupDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
@@ -372,7 +846,7 @@
 
                     <!-- @@@@ 클래스 수정 text-right m-b-sm > text-end mb-3 mt-5 -->
                     <div class="text-end mb-3 mt-5">
-                        <button class="btn btn-primary" type="button" onclick="Dashboard.checkClear();">초기화</button>
+                        <button class="btn btn-danger" type="button" onclick="Dashboard.checkClear();">초기화</button>
                     </div>
 
                     <div class="modelThumb">
@@ -536,7 +1010,19 @@
                                 </tr>
                                 <tr>
                                     <th>외장 메모리</th>
-                                    <td class="msMemData3"><span class="badge badge-info" style="margin-right:10px;">NEW</span>MicroSD (Up to 1TB)</td>
+                                    <td class="msMemData3">
+                                        <!-- @@@@ 기본 디폴트  -->
+                                        <div class="vstack">
+                                            <div>
+                                                <span class="badge badge-info" style="margin-right:10px;">NEW</span>
+                                                MicroSD (Up to 1TB) MicroSD (Up to 1TB) MicroSD (Up to 1TB) MicroSD (Up to 1TB) MicroSD (Up to 1TB)
+                                            </div>
+                                            <!-- 붙혀넣기가 있을때 아래 주석 풀으세요 -->
+                                            <div class="hstack border-top justify-content-end pt-2 mt-2">
+                                                <button type="button" class="btn btn-xs btn-primary rounded-pill">붙여놓기</button>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td><textarea class="form-control" id="msMemData3Ser"></textarea></td>
                                 </tr>
                                 <tr>
@@ -593,7 +1079,7 @@
                 <!-- @@@@ 버튼들 위치 변경 modal-footer에 넣음 아래 전체적으로 다 바뀜 다 볼것 -->
                 <div class="modal-footer">
                     <!-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#popupDetail">미리보기</button> -->
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#popupPreview">미리보기</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#popupCategory">미리보기</button>
                     <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#alertDistribute">배포</button>
                     <!-- @@@@ btn-outline-dark / btn-dark 클래스 변경 -->
                     <button class="btn btn-outline-dark" type="button" data-dismiss="modal">취소</button>
@@ -603,34 +1089,37 @@
         </div>
     </div>
 
-    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 시작-->
-    <div class="modal modal-default fade" id="alertStart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <!-- 모달 : 대시보드 > 상세보기 >  배포-->
+    <div class="modal modal-default fade" id="alertDistribute" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">알림</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <div class="modal-header"></div>
                 <div class="modal-body">
-                    모델 정보 수집을 시작 하시겠습니까?
+                    <div class="py-5 text-center">
+                        <i class="icon-danger mb-3"></i>
+                        <p class="fw-bold fs-5">배포 하시겠습니까?</p>
+                        <p class="form-text">(해당 국가의 스팩앱의 데이터가 자동 업데이트 됩니다.)</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-dark" onclick="Dashboard.updateModelDeploy()">배포</button>
                     <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 수집 중지-->
-    <div class="modal modal-default fade" id="alertStop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+
+    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 시작 -->
+    <div class="modal modal-default fade" id="alertStart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">알림</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+                <div class="modal-header"></div>
                 <div class="modal-body">
-                    모델 정보 수집을 중지 하시겠습니까?
+                    <div class="py-5 text-center">
+                        <i class="icon-danger mb-3"></i>
+                        <p class="fw-bold fs-5">모델 정보 수집을 시작 하시겠습니까?</p>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
@@ -640,8 +1129,49 @@
         </div>
     </div>
 
+    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 수집 중지-->
+    <div class="modal modal-default fade" id="alertStop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"></div>
+                <div class="modal-body">
+                    <div class="py-5 text-center">
+                        <i class="icon-danger mb-3"></i>
+                        <p class="fw-bold fs-5">모델 정보 수집을 중지 하시겠습니까?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 삭제-->
+    <div class="modal modal-default fade" id="alertDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"></div>
+                <div class="modal-body">
+                    <div class="py-5 text-center">
+                        <i class="icon-danger mb-3"></i>
+                        <p class="fw-bold fs-5">선택된 모델의 수집 데이터를 모두 삭제 하시겠습니까? </p>
+                        <p class="form-text">(선택 모델의 모든 데이터가 데이터베이스에서 삭제됩니다.)</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-dark" data-bs-dismiss="modal" onclick="Model.deleteModel('S')">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 모델 상세 > 카테고리 순서-->
-    <div class="modal fade popup-preview" id="popupPreview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade popup-preview" id="popupCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -744,139 +1274,262 @@
 
     <!-- 모달 : SYSTEM SETTINGS > 모델 관리  > 상세-->
     <div class="modal fade" id="modal-model-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl" style="min-width: 1280px;">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable" style="min-width: 1280px;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">모델 정보 상세</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex gap-2">
-                        <div>
+                    <div class="row gap-3">
+                        <!-- 왼쪽 -->
+                        <div class="col">
                             <!-- 검색 -->
                             <div class="search mb-3">
                                 <div class="row gx-2">
                                     <div class="col">
-                                        <select class="form-select">
+                                        <select id="form-control-1" class="form-select form-custom-select" onchange="$('#form-control-1-temp').val($(this).val())">
                                             <option value="">모델명</option>
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <select class="form-select">
+                                        <select id="form-control-2" class="form-select form-custom-select">
                                             <option value="">Site Code</option>
                                         </select>
                                     </div>
                                     <div class="col-auto">
-                                        <button type="button" class="btn btn-secondary">검색</button>
+                                        <button type="button" class="btn btn-secondary" onclick="ModelDetailPopup.goSearch()">검색</button>
                                     </div>
                                 </div>
                             </div>
                             <!-- 검색 끝-->
-                            <div class="row">
-                                <!-- 왼쪽 -->
-                                <div class="col">
-                                    <div class="table-container mt-3">
-                                        <div class="table-container__total">
-                                            <p class="fw-bold">
-                                                [총 <span class="text-primary">106</span>건]
-                                            </p>
-                                        </div>
-                                        <table class="table custom-table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center">No</th>
-                                                    <th class="text-center">그룹명 </th>
-                                                    <th class="text-center">모델명 </th>
-                                                    <th class="text-center">Family
-                                                        Name </th>
-                                                    <th class="text-center">Site
-                                                        Code</th>
-                                                    <th class="text-center">국가명 </th>
-                                                    <th class="text-center">세부 모델
-                                                        (SKU) 수 </th>
-                                                    <th class="text-center">상세
-                                                        모델 </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-center">Mid-range</td>
-                                                    <td class="text-center">Galaxy A01 Core</td>
-                                                    <td class="text-center">Galaxy A01 Core</td>
-                                                    <td class="text-center">n_africa</td>
-                                                    <td class="text-center">Newzealand</td>
-                                                    <td class="text-center">20</td>
-                                                    <td class="text-center">
-                                                        <a href="#none" class="fw-bold text-primary">더보기</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td class="text-center">Mid-range</td>
-                                                    <td class="text-center">Galaxy A01 Core</td>
-                                                    <td class="text-center">Galaxy A01 Core</td>
-                                                    <td class="text-center">n_africa</td>
-                                                    <td class="text-center">
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                Cameroon외 5개국
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li>
-                                                                    <div class="dropdown-item">Action</div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="dropdown-item">Another action</div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="dropdown-item">Something else here</div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="dropdown-item">Something else here</div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="dropdown-item">Something else here</div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                    <td class="text-center">20</td>
-                                                    <td class="text-center">
-                                                        <a href="#none" class="fw-bold text-primary">더보기</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <nav class="pagination-wrap d-flex justify-content-center" aria-label="Page navigation">
-                                        <ul class="pagination custom-pagination">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="icon-paging-first"></i></a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="icon-paging-prev"></i></a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="icon-paging-next"></i></a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#"><i class="icon-paging-end"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                            <div class="table-container mt-4">
+                                <div class="table-container__total">
+                                    <p class="fw-bold">
+                                        [총 <span class="text-primary">106</span>건]
+                                    </p>
                                 </div>
-                                <!-- 왼쪽 끝 -->
-
-                                <!-- 오른쪽 -->
-                                <div class="col-5"></div>
-                                <!-- 오른쪽 끝 -->
+                                <table class="table custom-table table-hover table-fixed">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">그룹명 </th>
+                                            <th class="text-center">모델명 </th>
+                                            <th class="text-center">Family
+                                                Name </th>
+                                            <th class="text-center">Site
+                                                Code</th>
+                                            <th class="text-center">국가명 </th>
+                                            <th class="text-center">세부 모델
+                                                (SKU) 수 </th>
+                                            <th class="text-center">상세
+                                                모델 </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">Mid-range</td>
+                                            <td class="text-center">Galaxy A01 Core</td>
+                                            <td class="text-center">Galaxy A01 Core</td>
+                                            <td class="text-center">n_africa</td>
+                                            <td class="text-center">Newzealand</td>
+                                            <td class="text-center">20</td>
+                                            <td class="text-center">
+                                                <a href="#none" class="fw-bold text-primary" data-toggle="right-card">더보기</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">Mid-range</td>
+                                            <td class="text-center">Galaxy A01 Core</td>
+                                            <td class="text-center">Galaxy A01 Core</td>
+                                            <td class="text-center">n_africa</td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Cameroon외 5개국
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <div class="dropdown-item">Action</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="dropdown-item">Another action</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="dropdown-item">Something else here</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="dropdown-item">Something else here</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="dropdown-item">Something else here</div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">20</td>
+                                            <td class="text-center">
+                                                <a href="#none" class="fw-bold text-primary" data-toggle="right-card">더보기</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            <nav class="pagination-wrap d-flex justify-content-center" aria-label="Page navigation">
+                                <ul class="pagination custom-pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="icon-paging-first"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="icon-paging-prev"></i></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="icon-paging-next"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="icon-paging-end"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- 왼쪽 끝 -->
+
+                        <!-- 오른쪽 -->
+                        <div class="col-5 d-none" id="right-card">
+                            <div id="modelInfoDetail">
+                                <div class="table-wrap">
+                                    <!-- @@@@ 클래스 아래로 맞출것 -->
+                                    <table class="table common-table text-center table-fixed">
+                                        <colgroup>
+                                            <col style="width:19%">
+                                            <col>
+                                            <col style="width:23%">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <th>국가명</th>
+                                                <td id="modelInfoCcCd">ae</td>
+                                                <th>Site Code</th>
+                                                <td id="modelInfoSiteCd">ae</td>
+                                            </tr>
+                                            <tr>
+                                                <th>세부 모델<br>(SKU) 수</th>
+                                                <td id="modelInfoMnCcCnt">3</td>
+                                                <th>Family Name</th>
+                                                <td id="modelInfoMnFamilyNm">Galaxy A01 Core</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <input type="hidden" id="dataListMIdx" value="129"><!-- 모델 정보 상세 조회용 모델IDX -->
+                                <input type="hidden" id="dataListCcIdx" value="ae"><!-- 모델 정보 상세 조회용 국가코드IDX -->
+
+                                <!-- @@@@  mt-4 클래스 추가  -->
+                                <div id="tableBoxCountryDetailListByModel" class="mt-4">
+                                    <div data-reactroot="">
+                                        <div>
+                                            <div class="board_top clearfix">
+                                                <div class="total_num">
+                                                    <!-- react-text: 5 -->총
+                                                    <!-- /react-text --><span>3</span><!-- react-text: 7 -->건
+                                                    <!-- /react-text -->
+                                                </div>
+                                                <div class="listing_select" style="display: none;"><span>목록개수</span><span class="select"><select class="selectpicker">
+                                                            <option>10</option>
+                                                            <option>25</option>
+                                                            <option>50</option>
+                                                            <option>100</option>
+                                                        </select></span><span>개</span></div>
+                                            </div>
+
+                                            <div class="main_search_result_list">
+                                                <!-- @@ custom-table table-hover 추가   -->
+                                                <table class="table custom-table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>No</th>
+                                                            <th data-column="MN_MODEL_CD" style="cursor: pointer;">
+                                                                <!-- react-text: 23 -->Model Code
+                                                                (SKU)
+                                                                <!-- /react-text -->
+                                                                <!-- react-text: 24 -->
+                                                                <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                                            </th>
+                                                            <th data-column="M_PREFIX" style="cursor: pointer;">
+                                                                <!-- react-text: 28 -->수집
+                                                                키워드
+                                                                <!-- /react-text -->
+                                                                <!-- react-text: 29 -->
+                                                                <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                                            </th>
+                                                            <th data-column="MN_UPDATE_DT" style="cursor: pointer;">
+                                                                <!-- react-text: 33 -->최근
+                                                                수집일
+                                                                <!-- /react-text -->
+                                                                <!-- react-text: 34 -->
+                                                                <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>SM-A013GZBDXSG</td>
+                                                            <td>SM-A013</td>
+                                                            <td>2020.11.18 10:28</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>SM-A013GZKDXSG</td>
+                                                            <td>SM-A013</td>
+                                                            <td>2020.11.18 10:28</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>SM-A013GZRDXSG</td>
+                                                            <td>SM-A013</td>
+                                                            <td>2020.11.18 10:28</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <nav class="pagination-wrap d-flex justify-content-center" aria-label="Page navigation">
+                                                <ul class="pagination custom-pagination">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#"><i class="icon-paging-first"></i></a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#"><i class="icon-paging-prev"></i></a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#"><i class="icon-paging-next"></i></a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#"><i class="icon-paging-end"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- 오른쪽 끝 -->
                         </div>
                     </div>
                 </div>
@@ -885,21 +1538,17 @@
                     <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">아니오</button>
                 </div>
             </div>
-        </div>
-        <script>
+            <script>
 
-        </script>
+            </script>
+        </div>
     </div>
 
 
 
 
-
-
-
     <!-- ------------------------- -->
-
-
+    <h1 class="text-danger text-center visually-hidden">(아래) price 모달</h1>
     <!-- 용량 설정 -->
     <div class="modal fade" id="modal-modelcapacity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -941,8 +1590,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -963,122 +1612,12 @@
                     <textarea class="" name="" id="" cols="30" rows="10"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- 가격데이터 미리보기 입력 -->
-    <div class="modal fade" id="modal-preview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="width: 500px; margin: 0.5rem auto;">
-            <div class="modal-content border-4 border-dark">
-                <div class="moda-header p-3"></div>
-                <div class="modal-body w-100" style="overflow-x: hidden;">
-                    <div class="modal-pricedata d-flex flex-wrap flex-column">
-                        <b>Price</b>
-                        <b class="modal-pricedata__model mt-3">The price for <br>
-                            <span>Galaxy S22</span></b>
-                        <b class="mt-4">Promotion</b>
-                        <div class="modal-pricedata__promImg mt-2" style="background-image: url(../assets/images/@profile.jpg);"></div>
-                        <div class="modal-pricedata__promDesc mt-2 fs-6">
-                            <p>Trade in and save $22.31</p>
-                            <p>Early upgrade with AT&T Next Up</p>
-                        </div>
-                        <b class="mt-4">Choose the capacity</b>
-                        <div class="modal-pricedata__capacity overflow-x-auto pb-2 w-100">
-                            <div class="hstack gap-2 pt-1 flex-nowrap ">
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck1" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck1">128G</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck2" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck2">256G</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck3" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck3">512G</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck4" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck4">1TB</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck4" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck4">1TB</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck4" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck4">1TB</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck4" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck4">1TB</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="radio" class="btn-check" name="capacity" id="btncheck4" autocomplete="off">
-                                    <label class="btn btn-gray4 btn-sm" for="btncheck4">1TB</label>
-                                </div>
-                            </div>
-                        </div>
-                        <b class="mt-4 pt-2">Purchase option</b>
-
-                        <div class="">
-                            <b class="mt-4 fs-6 d-block">Full payment</b>
-                            <b class="modal-pricedata__price mt-3">
-                                $1288.90
-                            </b>
-                            <div class="fs-6 mt-3 pt-2">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue.
-                            </div>
-                            <b class="mt-4 fs-6 d-block">Monthly</b>
-                            <b class="modal-pricedata__price mt-3 d-block">
-                                $1288.90 <span class="fs-5">/mo</span>
-                            </b>
-                            <b class="modal-pricedata__month mt-2 d-block">
-                                for 36 month
-                            </b>
-                            <div class="fs-6 mt-3 pt-2">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue.
-                            </div>
-                            <b class="mt-4 fs-6 d-block">Monthly</b>
-                            <b class="modal-pricedata__price mt-3 d-block">
-                                $1288.90 <span class="fs-5">/mo</span>
-                            </b>
-                            <b class="modal-pricedata__month mt-2 d-block">
-                                for 12 month
-                            </b>
-                            <div class="fs-6 mt-3 pt-2v">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue.
-                            </div>
-                            <b class="mt-5 fs-6 d-block">Description</b>
-                            <div class="modal-pricedata__description mt-3">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                Vivamus placerat sit ametex eu congue.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer pt-3">
-                    <button type="button" class="btn btn-lg btn-dark">닫기</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- 모달 : 2단계 인증 > 이메일 인증 -->
     <div class="modal fade" id="modal-cert-email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1265,8 +1804,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -1410,8 +1949,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -1475,9 +2014,6 @@
                                                 Default checkbox
                                             </label>
                                         </div>
-
-
-
                                     </div>
                                 </ul>
                             </li>
@@ -1502,9 +2038,6 @@
                                                 Default checkbox
                                             </label>
                                         </div>
-
-
-
                                     </div>
                                 </ul>
                             </li>
@@ -1529,9 +2062,6 @@
                                                 Default checkbox
                                             </label>
                                         </div>
-
-
-
                                     </div>
                                 </ul>
                             </li>
@@ -1556,9 +2086,6 @@
                                                 Default checkbox
                                             </label>
                                         </div>
-
-
-
                                     </div>
                                 </ul>
                             </li>
@@ -1567,8 +2094,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -1650,8 +2177,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -1733,8 +2260,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -1766,8 +2293,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                     <button type="button" class="btn btn-lg btn-dark">변경</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal">취소</button>
                 </div>
             </div>
         </div>
@@ -1841,8 +2368,8 @@
                     <div class="daterangepickers"></div>
                 </div>
                 <div class="modal-footer pt-0">
-                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">취소</button>
                     <button type="button" class="btn btn-lg btn-dark" data-bs-dismiss="modal">확인</button>
+                    <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal" data-bs-dismiss="modal" aria-label="Close">취소</button>
                 </div>
             </div>
         </div>

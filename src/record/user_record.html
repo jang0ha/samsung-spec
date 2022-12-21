@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body>
+  <div id="wrap">
+
+    @@include('@@webRoot/_include/_header.html')
+    <div id="container">
+      @@include('@@webRoot/_include/_aside.html')
+      <main id="main">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><i class="icon-home"></i></li>
+              <li class="breadcrumb-item">변경 이력</li>
+              <li class="breadcrumb-item active" aria-current="page">유저 이력 관리</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">유저 이력 관리</h1>
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title">사용자 이력 목록</h2>
+                    <!-- 검색영역 -->
+                    <div class="search">
+                      <div class="row gx-2">
+                        <div class="col-2">
+                          <select class="form-select form-custom-select" multiple="multiple" placeholder="상태">
+                            <option value="등록">등록</option>
+                            <option value="수정">수정</option>
+                            <option value="삭제">삭제</option>
+                            <option value="승인">승인</option>
+                            <option value="반려">반려</option>
+                          </select>
+                        </div>
+                        <div class="col-2">
+                          <select class="form-select form-custom-select" placeholder="전체">
+                            <option value="전체">전체</option>
+                            <option value="아이디">아이디</option>
+                            <option value="이름">이름</option>
+                          </select>
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control" value="" placeholder="">
+                        </div>
+                        <div class="col-auto">
+                          <button type="button" class="btn btn-secondary">검색</button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 검색영역 끝 -->
+
+                    <div class="my-2">
+                      <!-- @@@@  [공통] 테이블 상단 우측에 버튼 들어갈때  -->
+                      <div class="hstack gap-2 float-end mb-2">
+                        <button type="button" class="btn btn-outline-dark datepicker-btn btn-xs" data-bs-target="#modal-data-picker" data-bs-toggle="modal">전체기간 <i class="icon-calendar-check ms-4"></i></button>
+                        <button type="button" class="btn btn-outline-dark datepicker-btn btn-xs" data-bs-target="#modal-data-picker" data-bs-toggle="modal">2022.05.24 ~ 2022.09.27 <i class="icon-calendar-check ms-4"></i></button>
+                        <button type="button" class="btn btn-primary btn-sm">엑셀 다운로드</button>
+                      </div>
+                      <!-- @@@@  [공통] 테이블 상단 우측에 버튼 들어갈때 끝 -->
+
+                      <!-- 데이터 테이블  -->
+                      <div id="tableBox">
+                        <div data-reactroot="">
+                          <div>
+                            <div class="board_top clearfix">
+                              <div class="total_num">
+                                <!-- react-text: 5 -->총
+                                <!-- /react-text --><span>4784</span><!-- react-text: 7 -->건
+                                <!-- /react-text -->
+                              </div>
+                              <div class="listing_select" style="display: none;"><span>목록개수</span><span class="select">
+                                  <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="10"><span class="filter-option pull-left">10</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+                                    <div class="dropdown-menu open" role="combobox">
+                                      <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                        <li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">10</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">25</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">50</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                        <li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">100</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                      </ul>
+                                    </div>
+                                    <div class="dropdown bootstrap-select"><select class="selectpicker" tabindex="-98">
+                                        <option>10</option>
+                                        <option>25</option>
+                                        <option>50</option>
+                                        <option>100</option>
+                                      </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" title="10">
+                                        <div class="filter-option">
+                                          <div class="filter-option-inner">
+                                            <div class="filter-option-inner-inner">10</div>
+                                          </div>
+                                        </div>
+                                      </button>
+                                      <div class="dropdown-menu ">
+                                        <div class="inner show" role="listbox" id="bs-select-1" tabindex="-1">
+                                          <ul class="dropdown-menu inner show" role="presentation"></ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </span><span>개</span></div>
+                            </div>
+                            <div class="main_search_result_list">
+                              <table class="table custom-table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>No</th>
+                                    <th data-column="M_B_BRAND_GROUP_NM">
+                                      <!-- react-text: 23 -->User
+                                      <!-- /react-text -->
+                                      <!-- react-text: 24 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                    </th>
+                                    <th data-column="M_MEMO">
+                                      <!-- react-text: 28 -->구분
+                                      <!-- /react-text -->
+                                      <!-- react-text: 29 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                    </th>
+                                    <th data-column="MDH_CC_SITE_CD">
+                                      <!-- react-text: 33 -->Group
+                                      <!-- /react-text -->
+                                      <!-- react-text: 34 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                    </th>
+                                    <th data-column="COUNTRY">
+                                      <!-- react-text: 38 --> 지법인
+                                      <!-- /react-text -->
+                                      <!-- react-text: 39 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                    </th>
+                                    <th data-column="MDH_CREATE_ID">
+                                      <!-- react-text: 43 --> 활동일시
+                                      <!-- /react-text -->
+                                      <!-- react-text: 44 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span>
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr data-toggle="right-card">
+                                    <td>189</td>
+                                    <td>gd.hong2</td>
+                                    <td>엑셀다운로드</td>
+                                    <td>Subsdfdldk</td>
+                                    <td>SEA</td>
+                                    <td>2022/05/04 01:11:22</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            @@include('@@webRoot/_include/_pagination.html')
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 데이터 테이블 끝 -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5 d-none" id="right-card">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h2 class="header-title hstack justify-content-between">사용자 이력 상세<button type="button" class="btn-close btn-right-close btn-sm" aria-label="Close"></button></h2>
+                    <table class="table common-table table-bordered table-fixed">
+                      <colgroup>
+                        <col style="width: 18%;">
+                        <col>
+                        <col style="width: 18%;">
+                        <col>
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th class="text-center">구분</th>
+                          <td class="text-center">삼성지법인</td>
+                          <th class="text-center">소속</th>
+                          <td class="text-center">SEA</td>
+                        </tr>
+                        <tr>
+                          <th class="text-center">이름</th>
+                          <td class="text-center">홍길동</td>
+                          <th class="text-center">아이디</th>
+                          <td class="text-center">gd.hong2</td>
+                        </tr>
+                        <tr>
+                          <th class="text-center">활동 일시</th>
+                          <td colspan="3">
+                            2022/05/04 01:11:22
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="text-center">변경내용</th>
+                          <td colspan="3">
+                            <div class="height-300px overflow-auto">
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                              <p>모델: Galaxy S22</p>
+                              <br>
+                              <p>가격 변경:</p>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="hstack gap-2 justify-content-center">
+                      <button type="button" class="btn btn-dark w-auto">확인</button>
+                    </div>
+                  </div> <!-- card-body -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- container-fluid -->
+      </main>
+    </div>
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>

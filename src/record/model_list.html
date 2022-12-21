@@ -16,45 +16,44 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><i class="icon-home"></i></li>
-              <li class="breadcrumb-item">USER</li>
-              <li class="breadcrumb-item active" aria-current="page">유저 승인 대기 목록</li>
+              <li class="breadcrumb-item">변경 이력</li>
+              <li class="breadcrumb-item active" aria-current="page">모델 변경 이력</li>
             </ol>
           </nav>
-          <h1 class="page-title">유저 승인 대기 목록</h1>
+          <h1 class="page-title">모델 변경 현황</h1>
           <div class="content-wrapper">
             <div class="row">
               <!-- 좌측  -->
               <div class="col">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h2 class="header-title">승인 대기 유저 목록</h2>
+                    <h2 class="header-title">모델 변경 현황</h2>
                     <!-- 검색영역 -->
                     <div class="search">
-                      <div class="row gx-2">
-                        <div class="col-2">
-                          <select class="form-select form-custom-select" placeholder="구분">
-                            <option value="" selected>구분</option>
-                            <option value="전체">전체</option>
-                            <option value="subsidiary">subsidiary</option>
-                            <option value="channel">channel</option>
-                          </select>
+                      <form class="form form-horizontal">
+                        <div class="form-group">
+                          <div class="row gx-2">
+                            <div class="col-2">
+                              <select id="searchType" class="form-select form-custom-select">
+                                <option value="ALL">전체</option>
+                                <option value="mhGroup">세그먼트</option>
+                                <option value="mhMemo">모델명</option>
+                                <option value="mhPrefix">수집 키워드</option>
+                                <option value="mhCreateId">등록자 아이디</option>
+                                <option value="mhType">분류</option>
+                              </select>
+                            </div>
+                            <div class="col">
+                              <input id="searchValue" class="form-control" type="text" placeholder="모델명">
+                            </div>
+                            <div class="col-auto">
+                              <button class="btn btn-secondary" type="button" onclick="Model_history.search();">검색</button>
+                            </div>
+                          </div>
                         </div>
-                        <div class="col-2">
-                          <select class="form-select form-custom-select" placeholder="전체">
-                            <option value="전체">전체</option>
-                            <option value="아이디">아이디</option>
-                            <option value="이름">이름</option>
-                          </select>
-                        </div>
-                        <div class="col">
-                          <input type="text" class="form-control" value="" placeholder="">
-                        </div>
-                        <div class="col-auto">
-                          <button type="button" class="btn btn-secondary">검색</button>
-                        </div>
-                      </div>
+                      </form>
                     </div>
-                    <!-- 검색영역 끝 -->
+                    <!-- 검색 영역 끝 -->
                     <div class="my-2">
                       <!-- 데이터 테이블  -->
                       <div id="tableBox">
@@ -63,7 +62,7 @@
                             <div class="board_top clearfix">
                               <div class="total_num">
                                 <!-- react-text: 5 -->총
-                                <!-- /react-text --><span>21</span><!-- react-text: 7 -->건
+                                <!-- /react-text --><span>407</span><!-- react-text: 7 -->건
                                 <!-- /react-text -->
                               </div>
                               <div class="listing_select" style="display: none;"><span>목록개수</span><span class="select">
@@ -89,41 +88,48 @@
                                 <thead>
                                   <tr>
                                     <th>No</th>
-                                    <th data-column="U_CREATE_TIME" style="cursor: pointer;">
-                                      <!-- react-text: 23 -->구분
+                                    <th data-column="M_B_BRAND_GROUP_NM" style="cursor: pointer;">
+                                      <!-- react-text: 23 -->세그먼트
                                       <!-- /react-text -->
                                       <!-- react-text: 24 -->
                                       <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
-                                    <th data-column="U_TYPE_NM" style="cursor: pointer;">
-                                      <!-- react-text: 28 -->이름
+                                    <th data-column="MH_MEMO" style="cursor: pointer;">
+                                      <!-- react-text: 28 -->모델명
                                       <!-- /react-text -->
                                       <!-- react-text: 29 -->
                                       <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
-                                    <th data-column="U_NM" style="cursor: pointer;">
-                                      <!-- react-text: 33 -->아이디	
+                                    <th data-column="MH_PREFIX" style="cursor: pointer;">
+                                      <!-- react-text: 33 -->수집 키워드
                                       <!-- /react-text -->
                                       <!-- react-text: 34 -->
                                       <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
-                                    <th data-column="U_ID" style="cursor: pointer;">
-                                      <!-- react-text: 38 -->소속
+                                    <th data-column="MH_CREATE_ID" style="cursor: pointer;">
+                                      <!-- react-text: 38 -->등록자
+                                      아이디
                                       <!-- /react-text -->
                                       <!-- react-text: 39 -->
                                       <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
-                                    <th data-column="U_APPROVAL_YN" style="cursor: pointer;">
-                                      <!-- react-text: 43 -->등록일
+                                    <th data-column="MH_CREATE_TIME" style="cursor: pointer;">
+                                      <!-- react-text: 43 -->등록일시
                                       <!-- /react-text -->
                                       <!-- react-text: 44 -->
+                                      <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
+                                    <th data-column="MH_TYPE" style="cursor: pointer;">
+                                      <!-- react-text: 48 -->분류
+                                      <!-- /react-text -->
+                                      <!-- react-text: 49 -->
                                       <!-- /react-text --><span class="sorting-indicator"><i class="fa" aria-hidden="true"></i></span></th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
                                     <td>1</td>
-                                    <td>삼성지법인</td>
-                                    <td><a href="javascript:User.userDetail(&quot;sangmok.yun&quot;, &quot;1&quot;);" id="1" name="updateUser" class="item_active" data-toggle="right-card">윤상목</a></td>
-                                    <td><a href="javascript:User.userDetail(&quot;sangmok.yun&quot;, &quot;1&quot;);" name="updateUser" class="item_active" data-toggle="right-card">sangmok.yun</a></td>
-                                    <td>SUB1/CHAN1</td>
-                                    <td>2022.04.07 17:22</td>
+                                    <td>Mid-range</td>
+                                    <td><a href="javascript:Model_history.selectModelHistoryDetail(&quot;500&quot;,  &quot;1&quot;);" data-toggle="right-card"><span data-event="half-open">Galaxy A01 Core</span></a></td>
+                                    <td>SM-A013</td>
+                                    <td>wsx9317</td>
+                                    <td>2022.12.20 15:48</td>
+                                    <td>수정</td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -138,62 +144,80 @@
                 </div>
               </div>
               <!-- 좌측 끝 -->
-
               <!-- 우측  -->
               <div class="col-5 d-none" id="right-card">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h2 class="header-title hstack justify-content-between">승인 대기 유저 상세<button type="button" class="btn-close btn-right-close btn-sm" aria-label="Close"></button></h2>
-                    
+                    <h2 class="header-title hstack justify-content-between">모델 변경 정보 상세<button type="button" class="btn-close btn-sm btn-right-close" aria-label="Close"></button></h2>
                     <div class="table-wrap">
-                      <table class="table common-table border table-fixed">
+                      <input type="hidden" id="mIdx">
+                      <input type="hidden" id="msCcSiteCd">
+                      <table class="table table-bordered common-table table-fixed">
                         <colgroup>
-                          <col style="width: 130px;">
+                          <col style="width:20%">
                           <col>
-                          <col style="width: 130px;">
+                          <col style="width:20%">
                           <col>
                         </colgroup>
                         <tbody>
                           <tr>
-                            <th class="text-center">No</th>
-                            <td class="text-center">1</td>
-                            <th class="text-center">등록일</th>
-                            <td class="text-center">2022/05/04</td>
+                            <th>No</th>
+                            <td class="idx" colspan="2">1</td>
+                            <th>등록자</th>
+                            <td class="mhCreateId" colspan="2">wsx9317</td>
                           </tr>
                           <tr>
-                            <th class="text-center">구분<span class="required">*</span></th>
-                            <td colspan="3">삼성지법인</td>
+                            <th>수집 키워드</th>
+                            <td class="mhPrefix" colspan="5">SM-A013</td>
                           </tr>
                           <tr>
-                            <th class="text-center">소속<span class="required">*</span></th>
-                            <td class="text-center" colspan="3">
-                              <input type="text" class="form-control" readonly value="SEA">
-                            </td>
-                          </tr>
-                          <tr>
-                            <th class="text-center">아이디<span class="required">*</span></th>
-                            <td colspan="3">
-                              <input type="text" class="form-control" readonly value="gd.hong2">
-                            </td>
-                          </tr>
-                          <tr>
-                            <th class="text-center">이름<span class="required">*</span></th>
-                            <td colspan="3">
-                              <input type="text" class="form-control" readonly value="홍길동">
-                            </td>
-                          </tr>
-                          <tr>
-                            <th class="text-center">이메일<span class="required">*</span></th>
-                            <td colspan="3">
-                              <input type="text" class="form-control" readonly value="gd.hong@samsung.com">
-                            </td>
+                            <th>모델명</th>
+                            <td class="mhMemo" colspan="5">Galaxy A01 Core</td>
                           </tr>
                         </tbody>
                       </table>
-                    </div>
-                    <div class="hstack gap-2 justify-content-center">
-                      <button type="button" class="btn btn-gray4 w-auto" data-bs-target="#modal-companion" data-bs-toggle="modal">반려</button>
-                      <button type="button" class="btn btn-dark w-auto">승인</button>
+                      <div class="modelThumb">
+                        <div class="thumb">
+                          <img id="output" class="mImgUrl" src="https://media.galaxy-cms.com/media/img/a-series/model/20200727/29038124036438846.png" alt="">
+                          <input type="hidden" id="fileName">
+                          <input type="hidden" id="filePath">
+                          <input type="hidden" id="flagImg">
+                          <!-- 이미지 확대보기 필요하면 이거 쓰세요 (아래) -->
+                          <button data-bs-toggle="modal" data-bs-target="#popupImage" class="border border-dark rounded-2 p-2 px-3 expand-btn" style="right: 2.5rem;">
+                            <i class="icon-expand me-3"></i>확대보기
+                          </button>
+                        </div>
+                      </div>
+                      <div class="table-wrap">
+                        <table class="table table-bordered common-table">
+                          <colgroup>
+                            <col style="width:20%">
+                            <col>
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th>등록일시</th>
+                              <td id="mhCreateTime">2022.12.20 15:48</td>
+                            </tr>
+                            <tr>
+                              <th>출시일</th>
+                              <td id="mhReleaseDt">2020-06-01</td>
+                            </tr>
+                            <tr>
+                              <th>분류</th>
+                              <td id="mhType">수정</td>
+                            </tr>
+                            <tr>
+                              <th>수집 구분</th>
+                              <td>중지</td>
+                            </tr>
+                            <tr>
+                              <th>세그먼트</th>
+                              <td id="mhBBrandGroup">Mid-range</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div> <!-- card-body -->
                 </div>

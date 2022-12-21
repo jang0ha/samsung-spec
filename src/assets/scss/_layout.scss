@@ -1,9 +1,17 @@
 #header{width: 100%; height:90px; padding-left: 28px;padding-right: 28px; position: fixed; top: 0; z-index: 1038; background-color:  var(--bs-body-bg);
-
+  &::before{
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: url(../images/bg-border-radius.png) no-repeat 0 0;
+    position: absolute;
+    left: 300px;
+    top: 0;
+  }
     &::after{content:""; width: 300px; height:90px; position: absolute; top: 0; left: 0; background-color: $white; z-index: -1;}
 } 
 #container{padding-left: 300px;}
-#main{padding-left: 28px;padding-right: 28px; padding-bottom: 28px; padding-top:90px;}
+#main{padding-left: 28px;padding-right: 28px; padding-bottom: 0; padding-top:90px;}
 #aside{
     width: 300px;position: fixed;background: #fff;top: 0;left: 0;bottom: 0;padding-top: 130px; z-index: 1;
   
@@ -67,9 +75,20 @@
 html,
 body{width: 100%;height: 100vh;}
 body{min-width: 0;}
-.content-wrapper{
+.content-wrapper:not(.immobilize){
     width: calc(100% + 56px + 1.5rem);height: calc(100vh - 181px - 1rem);margin-left: calc(-28px + -.75rem);overflow: auto;
     > .row{min-width: 1520px;margin: 0;padding: 0 28px 30px;}
+}
+.content-wrapper.immobilize{
+  width: calc(100% + 56px + 1.5rem);height: calc(100vh - 181px - 1rem);margin-left: calc(-28px + -.75rem);overflow: auto;
+  >.row{
+    padding: 0 28px 30px;
+    min-width: fit-content;
+    margin: 0;
+    .card{
+      min-width: 1034px;
+    }
+  }
 }
 // #main{
 //     padding-bottom: 0;

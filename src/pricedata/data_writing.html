@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  @@include('@@webRoot/_include/_head.html')
+</head>
+
+<body>
+  <div id="wrap">
+
+    @@include('@@webRoot/_include/_header.html')
+    <div id="container">
+      @@include('@@webRoot/_include/_aside.html')
+      <main id="main">
+        <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><i class="icon-home"></i></li>
+              <li class="breadcrumb-item">MOBILE SPEC DATA</li>
+              <li class="breadcrumb-item active" aria-current="page">직접 등록</li>
+            </ol>
+          </nav>
+          <h1 class="page-title">모델 직접 등록</h1>
+          <div class="content-wrapper">
+            <div class="row">
+              <!-- 좌측 -->
+              <div class="col-5">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="">
+                      <div class="imgUploaderArea vstack gap-3">
+
+                        <img src="/assets/images/default-image.png" alt="" id="output">
+                        <label class="file-upload-btn btn btn-dark">
+                          이미지 등록 (500px X 500px)
+                          <input class="file-upload-input visually-hidden" type="file" id="imgFile" accept=".jpg, .gif, .png, .jpeg" onchange="javascript:Collection_write.loadFile(event, this);">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 좌측 끝 -->
+
+              <!-- 우측 -->
+              <div class="col-7">
+                <div class="card h-100">
+                  <div class="card-body card-data__content">
+                    <div class="">
+                      <div class="table-wrap">
+                        <table class="table table-bordered common-table table-fixed">
+                          <colgroup>
+                            <col style="width:22%">
+                            <col>
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th>Site Code</th>
+                              <td>
+                                <div class="hstack gap-3">
+                                  <select class="form-select w-auto" id="siteCodeOpt">
+                                    <option value="" selected="" disabled="" hidden="">선택하세요</option>
+                                    <option value="ae">ae</option>
+                                  </select>
+                                  <label class="custom-control custom-control-primary custom-checkbox ">
+                                    <input id="allChk" class="form-check-input" type="checkbox" name="inputCycle" value="">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label">일괄 적용</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>수집 모델</th>
+                              <td>
+                                <div class="row gutter-xs">
+                                  <div class="col-xs-8">
+                                    <select class="form-select" id="modelOpt">
+                                      <option value="" selected="" disabled="" hidden="">선택하세요</option>
+                                      <option value="asdf">asdf</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <th>노출관리</th>
+                              <td>
+                                <div class="hstack gap-3">
+                                  <label class=" custom-control custom-control-primary custom-checkbox">
+                                    <input id="msDispYn" class="form-check-input" type="checkbox" name="msDispYn" value="" checked="checked">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label"> 비교 모델 노출</span>
+                                  </label>
+                                  <label class="custom-control custom-control-primary custom-checkbox">
+                                    <input id="msDiscoverYn" class="form-check-input" type="checkbox" name="msDiscoverYn">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label"> new models 노출</span>
+                                  </label>
+                                  <label class="custom-control custom-control-primary custom-checkbox">
+                                    <input id="directSpecCheck" class="form-check-input" type="checkbox" name="inputCycle" value="" onclick="Collection_write.checkOutManage(this);">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label"> 추가 스펙 노출</span>
+                                  </label>
+                                  <label class="custom-control custom-control-primary custom-checkbox">
+                                    <input id="msColorYn" class="form-check-input" type="checkbox" name="msColorYn" value="" checked="checked">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label"> 색상 노출</span>
+                                  </label>
+                                  <!--                                                         <label class="custom-control custom-control-primary custom-checkbox"> -->
+                                  <!--                                                              <input id="msPriceYn" class="form-check-input" type="checkbox" name="msPriceYn" value="" checked="checked"> -->
+                                  <!--                                                              <span class="custom-control-indicator"></span> -->
+                                  <!--                                                         </label> -->
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div id="tableContent" class="table-wrap mt-5">
+                        <input type="hidden" id="fileName">
+                        <input type="hidden" id="filePath">
+                        <input type="hidden" id="flagImg">
+                        <table class="table table-bordered common-table table-fixed">
+                          <colgroup>
+                            <col style="width:22%">
+                            <col style="width:25%">
+                            <col>
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th class="text-center">Category</th>
+                              <th class="text-center">Title</th>
+                              <th class="text-center">Data</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th colspan="2">Display model name</th>
+                              <td>
+                                <textarea class="form-control" id="msDispName" name="msDispName"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="2">Color</th>
+                              <th>Name</th>
+                              <td>
+                                <textarea class="form-control" id="msColorData1" name="msColorData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>Code</th>
+                              <td>
+                                <textarea class="form-control" id="msColorData2" name="msColorData2"></textarea>
+                              </td>
+                            </tr>
+                            <!--                                                 <tr> -->
+                            <!--                                                     <th colspan="2">Price</th> -->
+                            <!--                                                     <td> -->
+                            <!--                                                         <textarea class="form-control"  id="msPriceData1" name="msPriceData1"></textarea> -->
+                            <!--                                                     </td> -->
+                            <!--                                                 </tr> -->
+                            <!-- 2019.11.25 직접입력 스펙 항목 추가 -->
+                            <tr class="directInputTr" style="">
+                              <th class="text-center">추가 스펙1</th>
+                              <th>
+                                <textarea id="msDireTitle1Ser" class="form-control"></textarea>
+                              </th>
+                              <td>
+                                <textarea id="msDireData1Ser" class="form-control"></textarea>
+                              </td>
+                            </tr>
+                            <tr class="directInputTr" style="">
+                              <th class="text-center">추가 스펙2</th>
+                              <th>
+                                <textarea id="msDireTitle2Ser" class="form-control"></textarea>
+                              </th>
+                              <td>
+                                <textarea id="msDireData2Ser" class="form-control"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="6">Display</th>
+                              <th>메인 크기</th>
+                              <td>
+                                <textarea class="form-control" id="msDispData1" name="msDispData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>메인 해상도</th>
+                              <td>
+                                <textarea class="form-control" id="msDispData2" name="msDispData2"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>메인 종류</th>
+                              <td>
+                                <textarea class="form-control" id="msDispData3" name="msDispData3"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>커버 크기</th>
+                              <td>
+                                <textarea class="form-control" id="msDispData4" name="msDispData4"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>커버 해상도</th>
+                              <td>
+                                <textarea class="form-control" id="msDispData5" name="msDispData5"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>커버 종류</th>
+                              <td>
+                                <textarea class="form-control" id="msDispData6" name="msDispData6"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="6">Camera</th>
+                              <th>후면 화소(MP)</th>
+                              <td>
+                                <textarea class="form-control" id="msCamData1" name="msCamData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>후면 조리개(F)</th>
+                              <td>
+                                <textarea class="form-control" id="msCamData2" name="msCamData2"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>전면 화소(MP)</th>
+                              <td>
+                                <textarea class="form-control" id="msCamData3" name="msCamData3"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>전면 조리개(F)</th>
+                              <td>
+                                <textarea class="form-control" id="msCamData4" name="msCamData4"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>커버 화소(MP)</th>
+                              <td>
+                                <textarea class="form-control" id="msCamData5" name="msCamData5"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>커버 조리개(F)</th>
+                              <td>
+                                <textarea class="form-control" id="msCamData6" name="msCamData6"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="4">Battery</th>
+                              <th>배터리 용량(mAh, Typical)</th>
+                              <td>
+                                <textarea class="form-control" id="msBatData3" name="msBatData3"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>인터넷 사용 (Wi-Fi)(Hours)</th>
+                              <td>
+                                <textarea class="form-control" id="msBatData1" name="msBatData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>오디오 재생(Hours)</th>
+                              <td>
+                                <textarea class="form-control" id="msBatData4" name="msBatData4"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>비디오 재생(Hours)</th>
+                              <td>
+                                <textarea class="form-control" id="msBatData2" name="msBatData2"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="3">메모리 &amp; 스토리지</th>
+                              <th>메모리</th>
+                              <td>
+                                <textarea class="form-control" id="msMemData1" name="msMemData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>스토리지</th>
+                              <td>
+                                <textarea class="form-control" id="msMemData2" name="msMemData2"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>외장 메모리</th>
+                              <td>
+                                <textarea class="form-control" id="msMemData3" name="msMemData3"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="2">Processor</th>
+                              <th>CPU 속도</th>
+                              <td>
+                                <textarea class="form-control" id="msProcData1" name="msProcData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>CPU 종류</th>
+                              <td>
+                                <textarea class="form-control" id="msProcData2" name="msProcData2"></textarea>
+                              </td>
+                            </tr>
+                            <!-- start -->
+                            <tr>
+                              <th rowspan="3">Dimensions</th>
+                              <th>크기</th>
+                              <td>
+                                <textarea class="form-control" id="msPhysiData1" name="msPhysiData1"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>접힌 상태시 크기</th>
+                              <td>
+                                <textarea class="form-control" id="msPhysiData3" name="msPhysiData3"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th>무게</th>
+                              <td>
+                                <textarea class="form-control" id="msPhysiData2" name="msPhysiData2"></textarea>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th rowspan="1">sustainability</th>
+                              <th>소재</th>
+                              <td>
+                                <textarea class="form-control" id="msSusData1" name="msSusData1"></textarea>
+                              </td>
+                            </tr>
+                            <!--                                                 <tr> -->
+                            <!--                                                     <th></th> -->
+                            <!--                                                     <td> -->
+                            <!--                                                         <textarea class="form-control"  id="msSusData2" name="msSusData2" disabled></textarea> -->
+                            <!--                                                     </td> -->
+                            <!--                                                 </tr> -->
+                            <!-- end -->
+                            <tr>
+                              <th colspan="2">Sensor</th>
+                              <td>
+                                <textarea class="form-control" id="msSenData1" name="msSenData1"></textarea>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="hstack gap-2 justify-content-center">
+                        <button class="btn btn-dark" type="button" onclick="Collection_write.insertModelService()">저장</button>
+                        <button class="btn btn-secondary" type="button" onclick="history.back();">취소</button>
+                      </div>
+                    </div>
+                  </div> <!-- card-body -->
+                </div>
+              </div>
+              <!-- 우측 끝 -->
+            </div>
+          </div>
+        </div> <!-- container-fluid -->
+      </main> <!-- main -->
+    </div>
+  </div>
+  @@include('@@webRoot/_include/_modal.html')
+</body>
+
+</html>
