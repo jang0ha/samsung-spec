@@ -1,17 +1,25 @@
 
 // 상세보기 >> 미리보기 관련 
-.modelThumb{border: 1px solid #ddd;}
-.modelThumb .thumb{text-align: center;position: relative;padding: 50px 0;min-height:200px}
+.modelThumb{border: 1px solid #ddd; position: relative;}
+.modelThumb .thumb{text-align: center;position: relative;padding: 20px 0;min-height:200px}
 .modelThumb .thumb img{width:200px;}
 .modelThumb .thumb .icon{font-size: 30px;color: #111;position: absolute;bottom:30px;right:35%;}
-.modelThumb .file-upload-btn{position: absolute;right:15px;bottom:45px}
-.modelThumb p{position: absolute;bottom:14px;right:15px;margin: 0;text-align: center; color:$secondary; font-size: 12px;}
+// .modelThumb .file-upload-btn{position: absolute;right:15px;bottom:45px}
+// .modelThumb p{position: absolute;bottom:14px;right:15px;margin: 0;text-align: center; color:$secondary; font-size: 12px;}
 
 .modelThumb{
-  .expand-btn{
-    position: absolute;
-    bottom:45px;
-    right: 235px;
+ 
+  .img-enroll-wrap{
+    border-top: 1px solid $input-border-color;
+    padding: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    width: 100%;
+    p{
+      font-size: 12px;
+    }
   }
 }
 
