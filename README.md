@@ -1,7 +1,15 @@
 # samsung-spec
-samsung-spec cms >> [사이트보기](http://jang0ha.dothome.co.kr/samsung_spec/pagelist.html)
 
-목적 >> 기획 추가 , (UI SAMSUNG-PMS랑 동일하게 진행) 디자인 리뉴얼 진행
+
+
+### 특징  : 기 사이트 >>> 기획 추가 , (UI SAMSUNG-PMS랑 동일하게 진행) 디자인 리뉴얼 요청 진행
+
+시작 : 2022년 11월<br>
+종료 : 2022년 11월<br><br>
+
+작업일수 : 13일
+
+[사이트보기](http://jang0ha.dothome.co.kr/samsung_spec/pagelist.html)
 
 ---
 
@@ -11,3 +19,4 @@ samsung-spec cms >> [사이트보기](http://jang0ha.dothome.co.kr/samsung_spec/
 - 디자인 / 퍼블 기여도 (100%)
 
 
+  
